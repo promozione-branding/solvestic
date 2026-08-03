@@ -145,7 +145,7 @@ export default function Hero() {
 
             {[
               {
-                img: "/hero.png",
+                img: "/hero1.png",
                 icon: FaSun,
                 label: "Pigmentation",
                 rotate: "-rotate-0",
