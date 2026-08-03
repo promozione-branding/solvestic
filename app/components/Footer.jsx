@@ -33,9 +33,11 @@ export default function Footer() {
             <span className="text-xs text-gray-500">Facebook</span>
           </div>
           <div className="flex flex-col items-center gap-1.5">
+            <a href="https://www.youtube.com/@solvesticcare">
             <div className="w-10 h-10 rounded-full border border-purple-200 flex items-center justify-center">
               <FaYoutube className="text-purple-900" size={16} />
             </div>
+          </a>
             <span className="text-xs text-gray-500">YouTube</span>
           </div>
         </div>

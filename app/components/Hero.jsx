@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import {
   FaArrowRight,
@@ -144,30 +145,32 @@ export default function Hero() {
 
             {[
               {
-                img: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=600&auto=format&fit=crop",
+                img: "/hero.png",
                 icon: FaSun,
                 label: "Pigmentation",
-                rotate: "-rotate-3",
+                rotate: "-rotate-0",
               },
-              {
-                img: "https://images.unsplash.com/photo-1591084728795-1149f32d9866?q=80&w=600&auto=format&fit=crop",
-                icon: PiDropSimpleBold,
-                label: "Dryness",
-                rotate: "rotate-1",
-              },
-              {
-                img: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=600&auto=format&fit=crop",
-                icon: PiSparkleFill,
-                label: "Dull & Uneven Skin",
-                rotate: "rotate-3",
-              },
+              // {
+              //   img: "https://images.unsplash.com/photo-1591084728795-1149f32d9866?q=80&w=600&auto=format&fit=crop",
+              //   icon: PiDropSimpleBold,
+              //   label: "Dryness",
+              //   rotate: "rotate-1",
+              // },
+              // {
+              //   img: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=600&auto=format&fit=crop",
+              //   icon: PiSparkleFill,
+              //   label: "Dull & Uneven Skin",
+              //   rotate: "rotate-3",
+              // },
             ].map((item, i) => (
               <div
                 key={i}
-                className={`relative w-24 sm:w-36 h-56 sm:h-80 rounded-2xl overflow-hidden shadow-lg ${item.rotate}`}
+                className={`relative h-[420px]  rounded-2xl overflow-hidden  ${item.rotate}`}
               >
-                <img
+                <Image
                   src={item.img}
+                  height={1000}
+                  width={1000}
                   alt={item.label}
                   className="w-full h-full object-cover"
                 />
