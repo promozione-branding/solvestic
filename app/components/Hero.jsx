@@ -165,7 +165,7 @@ export default function Hero() {
             ].map((item, i) => (
               <div
                 key={i}
-                className={`relative h-[420px]  rounded-2xl overflow-hidden  ${item.rotate}`}
+                className={`relative md:h-[420px]   rounded-2xl overflow-hidden  ${item.rotate}`}
               >
                 <Image
                   src={item.img}
