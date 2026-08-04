@@ -6,8 +6,8 @@ export default function Header() {
     <>
     <div className='w-full'>
      <div className="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 pt-2 pb-2">
-        <div className="flex  justify-center items-center">
-          <Image src="/mainLogo1.png" height={100} width={100} className='!h-20 w-30 object-cover'/>
+        <div className="flex h-25 w-50  justify-start items-center">
+          <Image src="/solvestic-logo.png" height={100} width={100} className=' h-30 w-auto object-fill  '/>
           {/* <span className="text-pink-500 text-2xl sm:text-3xl font-bold">
             .
           </span> */}
