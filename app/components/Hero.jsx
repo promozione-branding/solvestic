@@ -145,29 +145,29 @@ export default function Hero() {
 
             {[
               {
-                img: "/hero1.png",
+                img: "/face1.webp",
                 icon: FaSun,
                 label: "Pigmentation",
-                rotate: "-rotate-0",
+                rotate: "rotate-3",
               },
-              // {
-              //   img: "https://images.unsplash.com/photo-1591084728795-1149f32d9866?q=80&w=600&auto=format&fit=crop",
-              //   icon: PiDropSimpleBold,
-              //   label: "Dryness",
-              //   rotate: "rotate-1",
-              // },
-              // {
-              //   img: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=600&auto=format&fit=crop",
-              //   icon: PiSparkleFill,
-              //   label: "Dull & Uneven Skin",
-              //   rotate: "rotate-3",
-              // },
+              {
+                img: "/face2.webp",
+                icon: PiDropSimpleBold,
+                label: "Dryness",
+                rotate: "rotate-3",
+              },
+              {
+                img: "/face3.webp",
+                icon: PiSparkleFill,
+                label: "Glow & Shine",
+                rotate: "rotate-3",
+              },
             ].map((item, i) => (
               <div
                 key={i}
-                className={`relative md:h-[420px]   rounded-2xl overflow-hidden  ${item.rotate}`}
+                className={`relative md:h-[420px] w-30 md:w-[190px] hover:scale-105 transition-transform duration-150  md:rounded-2xl overflow-hidden  ${item.rotate}`}
               >
-                <Image
+                <img
                   src={item.img}
                   height={1000}
                   width={1000}

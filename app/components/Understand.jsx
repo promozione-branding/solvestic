@@ -3,7 +3,7 @@ import { FaLeaf, FaSmog, FaSun, FaThermometerHalf, FaTint } from 'react-icons/fa
 
 
 const UnderstandItem = ({ icon: Icon, title, desc }) => (
-  <div className="flex flex-col items-center text-center gap-3">
+  <div className="flex flex-col hover:shadow-2xl p-3 rounded-xl transition-all duration-150 hover:scale-105 hover:border hover:border-purple-600 items-center text-center gap-3">
     <Icon className="text-purple-900" size={30} />
     <h4 className="font-light text-gray-900 text-[15px]">{title}</h4>
     <p className="text-sm text-gray-500 leading-snug">{desc}</p>

@@ -13,8 +13,8 @@ export default function Page() {
     <Header/>
     <Hero/>
     <WhyJoins/>
-    <Understand/>
     <Countdown/>
+    <Understand/>
     <Footer/>
         {/* <Home/> */}
     </>

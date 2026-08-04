@@ -3,7 +3,7 @@ import { FaBell, FaGift, FaRegSmile, FaTags } from 'react-icons/fa';
 
 
 const WhyCard = ({ icon: Icon, title, desc }) => (
-  <div className="border border-2 border-purple-950 rounded-xl px-5 py-5 md:py-2 flex items-start gap-3 sm:flex-col sm:items-start">
+  <div className="border border-2 border-purple-950 hover:scale-105 transition-transform  duration-150 rounded-xl px-5 py-5 md:py-2 flex items-start gap-3 sm:flex-col sm:items-start">
     <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center shrink-0">
       <Icon className="text-purple-900" size={18} />
     </div>
