@@ -47,7 +47,11 @@ export default function Understand() {
                    
                   </div>
                    <div className=" bg-white rounded-2xl p-6 relative overflow-hidden border border-purple-100">
-                      <FaLeaf className="absolute -bottom-0 right-4 text-purple-100" size={90} />
+                    <img
+    src="/leaf.png"
+    className="absolute inset-0 z-0 w-full h-full object-cover object-center "
+    alt="bg"
+  />
                       <h4 className="font-semibold text-gray-900 relative z-10">
                         Formulated for
                       </h4>

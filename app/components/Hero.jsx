@@ -57,7 +57,7 @@ const ConcernCard = ({ icon: Icon, label, className = "" }) => (
 export default function Hero() {
   return (
     <>
-    <div className="w-full overflow-hidden">
+    <div className="w-full ">
       <section className="max-w-7xl mx-auto px-5 sm:px-8 pt-0 md:pt-3 pb-2 md:pb-7 grid lg:grid-cols-2 gap-12 items-center">
         {/* Left: copy + form */}
         <div>
@@ -128,63 +128,34 @@ export default function Hero() {
         </div>
 
         {/* Right: images */}
-       <div className="relative overflow-hidden">
+       <div   className="relative  ">
+
+    <img
+    src="/bg.png"
+    className="absolute inset-0 z-0 w-full h-full object-cover object-center scale-130"
+    alt="bg"
+  />
+
+    
 
   {/* Heading */}
-  <p className="text-center pl-2 lg:text-left text-lg sm:text-xl font-semibold text-purple-950 mb-6">
+  <div className="relative z-10">
+  <p className="text-center z-50 pl-2 lg:text-left text-lg sm:text-xl font-semibold text-purple-950 mb-6">
     We&apos;re here for every
     <br />
     skin concern{" "}
-    <span className="relative inline-block">
+    <span className="relative  z-50 inline-block">
       you face.
-      <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-pink-300 rounded-full" />
+      <span className="absolute z-50 left-0 -bottom-1 w-full h-0.5 bg-pink-300 rounded-full" />
     </span>
   </p>
-
-  {/* BLOBS */}
-  <div className="absolute inset-0 -z-10 overflow-hidden">
-
-    {/* Left blob */}
-    <div className="absolute left-0 top-0 -translate-x-1/3 -translate-y-1/3 opacity-40 blur-2xl animate-blob">
-      <svg className="w-[140%] max-w-none" viewBox="0 0 700 500">
-        <path
-          d="M150 80C250 -40 500 0 620 160C740 320 580 460 380 480C180 500 40 380 20 240C0 100 80 140 150 80Z"
-          fill="url(#gradient1)"
-        />
-        <defs>
-          <linearGradient id="gradient1" x1="0" y1="0" x2="700" y2="500">
-            <stop offset="0%" stopColor="#C084FC" />
-            <stop offset="50%" stopColor="#E9D5FF" />
-            <stop offset="100%" stopColor="#FBCFE8" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-
-    {/* Right blob */}
-    <div className="absolute right-0 bottom-0 translate-x-1/3 translate-y-1/3 opacity-30 blur-2xl animate-blob [animation-delay:4s]">
-      <svg className="w-[120%] max-w-none" viewBox="0 0 600 450">
-        <path
-          d="M120 60C220 -20 420 40 520 180C620 320 520 420 340 440C160 460 40 340 30 220C20 120 80 120 120 60Z"
-          fill="url(#gradient2)"
-        />
-        <defs>
-          <linearGradient id="gradient2" x1="0" y1="0" x2="600" y2="450">
-            <stop offset="0%" stopColor="#DDD6FE" />
-            <stop offset="100%" stopColor="#F5D0FE" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-
-    {/* Center glow */}
-    <div className="flex items-center justify-center h-full">
-      <div className="w-52 h-52 sm:w-72 sm:h-72 bg-purple-200/40 rounded-full blur-2xl animate-blob [animation-duration:25s]" />
-    </div>
   </div>
 
+  {/* BLOBS */}
+ 
+
   {/* IMAGES */}
-  <div className="relative flex justify-center items-end gap-2 sm:gap-4">
+  <div className="relative z-50 flex justify-center items-end gap-2 sm:gap-4">
 
     {[
       {

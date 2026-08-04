@@ -19,7 +19,7 @@ export default function Header() {
           <div className="h-0.5 w-16 bg-gradient-to-r from-pink-400 to-purple-400 ml-auto mt-1 rounded-full" />
         </div>
       </div>
-      <div className=' absolute rotate-180 right-2 lg:right-20 xl:left-190 h-25 w-25 top-0'>
+      <div className=' absolute rotate-180 right-2 lg:right-20 xl:left-210 h-25 w-25 top-0'>
        <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon"
