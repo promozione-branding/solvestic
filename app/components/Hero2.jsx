@@ -66,9 +66,9 @@ export default function Hero2() {
           srcSet="/mob3.webp"
         />
         {/* Desktop */}
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
         <Image
-          src="/desk3.webp"
+          src="/nhu.jpeg"
           alt="Hero Banner"
           width={1920}
           height={700}
