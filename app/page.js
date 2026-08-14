@@ -6,6 +6,8 @@ import WhyJoins from "./components/WhyJoins";
 import Understand from "./components/Understand";
 import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
+import Features from "./components/Features";
+import StayConnected from "./components/StayConnected";
 
 export default function Page() {
   return (
@@ -13,8 +15,10 @@ export default function Page() {
     <Header/>
     <Hero/>
     <WhyJoins/>
-    <Countdown/>
+    {/* <Countdown/> */}
     <Understand/>
+    <Features/>
+    <StayConnected/>
     <Footer/>
         {/* <Home/> */}
     </>

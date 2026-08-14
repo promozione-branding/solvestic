@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -22,11 +23,11 @@
 body {
   background: #fdf3f6;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', sans-serif;
 }
 
 
-.outfit-dmsans {
+/* .outfit-dmsans {
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -54,11 +55,12 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   /* font-style: normal; */
-}
+/* } */ 
 
-p{
+/* p{
   font-family: lato;
-}
+}  */
+
 /* h1,h2,h3,h4{
   font-family: pop;
 } */
