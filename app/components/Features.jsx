@@ -92,7 +92,7 @@ export default function Features() {
                 <div className="absolute inset-0  z-10 pointer-events-none" />
 
                 <Image
-                  src="/newcenter.webp"
+                  src="/fea.webp"
                   alt="Solvestic skincare"
                   fill
                   className="object-cover"
