@@ -92,7 +92,7 @@ export default function Features() {
               <div className="flip-card-image duration-200 absolute inset-0 overflow-hidden z-10">
                 <div className="absolute inset-0 z-10 pointer-events-none" />
                 <Image
-                  src="/feat22.webp"
+                  src="/newimg.webp"
                   alt="Solvestic skincare"
                   fill
                   className="object-cover"

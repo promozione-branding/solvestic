@@ -10,10 +10,12 @@ import Features from "./components/Features";
 import StayConnected from "./components/StayConnected";
 import FormSection from "./components/FormSection";
 import Hero2 from "./components/Hero2";
+import Marquee from "./components/Marquee";
 
 export default function Page() {
   return (
     <>
+    <Marquee/>
     <Header/>
     <Hero2/>
     <FormSection/>
