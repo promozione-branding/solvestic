@@ -1,4 +1,7 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import {
   FaArrowRight,
   FaChevronDown,
@@ -70,8 +73,76 @@ const SelectField = ({
 );
 
 export default function FormSection() {
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const data = {
+      platform: "Solvestic",
+      platformEmail: "solvesticwellness@gmail.com",
+
+      // Form fields
+      name: formData.get("contactPerson"),
+      email: formData.get("email"),
+      company: "N/A",
+      phone: formData.get("phone"),
+      product: formData.get("skinConcern"),
+      place: "N/A",
+      message: "N/A",
+    };
+
+    // Validate phone
+    if (!data.phone || data.phone.toString().length < 10) {
+      toast.error("Enter Valid Phone Number");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await axios.post(
+        "https://brandbnalo.com/api/form/add",
+        data,
+        {
+          validateStatus: (status) => status >= 200 && status < 500,
+        }
+      );
+
+      if (res.status >= 200 && res.status < 300) {
+        setSubmitted(true);
+
+        toast.success("Successfully joined the waitlist!");
+
+        // Reset form
+        setTimeout(() => {
+          form.reset();
+        }, 100);
+
+        // Hide success state
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 3000);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.log("ERROR:", err?.response || err.message);
+      toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form className="w-full max-w-4xl px-5 pt-5 mx-auto">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-4xl px-5 pt-5 mx-auto"
+    >
       {/* Form Heading */}
       <div className="mb-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-purple-950">
@@ -85,11 +156,11 @@ export default function FormSection() {
       </div>
 
       {/* Name + Email */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
         <InputField
           icon={FaUser}
           placeholder="Full Name"
-          name="name"
+          name="contactPerson"
           required
         />
 
@@ -98,6 +169,14 @@ export default function FormSection() {
           placeholder="Email Address"
           type="email"
           name="email"
+          required
+        />
+
+        <InputField
+          icon={FaPhoneAlt}
+          placeholder="Phone Number"
+          type="tel"
+          name="phone"
           required
         />
 
@@ -117,24 +196,26 @@ export default function FormSection() {
         />
       </div>
 
-      {/* Phone + Skin Concern */}
-      <div className="grid   gap-3">
-       
-
-        
-      </div>
-
       {/* Submit Button */}
       <button
         type="submit"
-        className="group mt-4 w-full bg-[#ad51c1] hover:bg-purple-900 active:scale-[0.99] transition-all duration-200 text-white font-semibold rounded-xl py-3.5 px-5 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+        disabled={loading}
+        className="group mt-4 w-full bg-[#ad51c1] hover:bg-purple-900 active:scale-[0.99] transition-all duration-200 text-white font-semibold rounded-xl py-3.5 px-5 flex items-center justify-center gap-2 shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        <span>Join Waitlist</span>
+        <span>
+          {loading
+            ? "Submitting..."
+            : submitted
+              ? "Joined Successfully!"
+              : "Join Waitlist"}
+        </span>
 
-        <FaArrowRight
-          size={13}
-          className="group-hover:translate-x-1 transition-transform duration-200"
-        />
+        {!loading && !submitted && (
+          <FaArrowRight
+            size={13}
+            className="group-hover:translate-x-1 transition-transform duration-200"
+          />
+        )}
       </button>
 
       {/* Privacy Text */}
