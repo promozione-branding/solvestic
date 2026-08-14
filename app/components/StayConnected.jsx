@@ -19,12 +19,12 @@ const values = [
   { icon: FaMagic, label: "Skin\nFirst" },
   { icon: FaShieldAlt, label: "Real &\nAuthentic" },
   { icon: FaLayerGroup, label: "Smart\nFormulas" },
-  { icon: FaTint, label: "Refreshingly\nEffective" },
+  { icon: FaTint, label: "Intelligent\nSkincare" },
 ];
 
 export default function StayConnected() {
   return (
-    <section className="relative overflow-hidden py-10  lg:py-15">
+    <section className="relative overflow-hidden py-10  md:py-8">
       {/* Decorative leaf - hidden on small mobile */}
 {/* 
       <div className=" absolute text-2xl rotate-13  right-2 lg:left-20 xl:-left-1 h-25 w-25 bottom-0">
@@ -100,11 +100,7 @@ export default function StayConnected() {
               </p>
 
               {/* Privacy message */}
-              <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-gray-400 sm:mt-6 lg:justify-start">
-                <FaShieldAlt className="h-3.5 w-3.5 shrink-0 text-purple-400" />
-
-                <span>No spam, ever. Unsubscribe anytime.</span>
-              </div>
+            
             </div>
 
             {/* ================= RIGHT ================= */}

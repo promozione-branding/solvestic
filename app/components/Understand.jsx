@@ -4,7 +4,7 @@ import { FaLeaf, FaSmog, FaSun, FaThermometerHalf, FaTint } from 'react-icons/fa
 
 const UnderstandItem = ({ icon: Icon, title, desc }) => (
   <div className="flex flex-col hover:shadow-2xl p-3 rounded-xl transition-all duration-150 hover:scale-105 hover:border hover:border-purple-600 items-center text-center gap-3">
-    <Icon className="text-purple-900" size={30} />
+    <Icon className="text-[#ff8ba9]" size={30} />
     <h4 className="font-light text-gray-900 text-[15px]">{title}</h4>
     <p className="text-sm text-gray-500 leading-snug">{desc}</p>
   </div>
@@ -16,7 +16,7 @@ export default function Understand() {
     <div className='w-full'>
          <section className="bg-purple-50/60 py-7  md:py-14">
                 <div className="max-w-7xl mx-auto px-5 sm:px-8">
-                  <h2 className="text-center text-2xl sm:text-3xl font-bold text-purple-950 mb-12">
+                  <h2 className="text-center text-2xl md:text-5xl font-bold text-[#ad51c1] mb-12">
                     We Understand Indian Skin
                   </h2>
         

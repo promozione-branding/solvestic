@@ -8,15 +8,19 @@ import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
 import Features from "./components/Features";
 import StayConnected from "./components/StayConnected";
+import FormSection from "./components/FormSection";
+import Hero2 from "./components/Hero2";
 
 export default function Page() {
   return (
     <>
     <Header/>
-    <Hero/>
-    <WhyJoins/>
+    <Hero2/>
+    <FormSection/>
+    {/* <Hero/> */}
+    {/* <WhyJoins/> */}
     {/* <Countdown/> */}
-    <Understand/>
+    {/* <Understand/> */}
     <Features/>
     <StayConnected/>
     <Footer/>

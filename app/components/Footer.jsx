@@ -8,7 +8,7 @@ export default function Footer() {
       
 
       {/* ---------- Footer ---------- */}
-      <footer className="relative bg-purple-950 text-purple-200">
+      <footer className="relative bg-[#b271c7] text-white">
         {/* Wave top edge */}
         <div className="absolute -top-px left-0 w-full overflow-hidden leading-none translate-y-[-99%]">
           <svg
@@ -19,7 +19,7 @@ export default function Footer() {
             <path
               d="M0,40 C240,100 360,0 600,20 C860,42 980,90 1200,55 C1320,38 1380,45 1440,30 L1440,100 L0,100 Z"
               fill="currentColor"
-              className="text-purple-950"
+              className="text-[#b271c7]"
             />
           </svg>
         </div>
@@ -30,17 +30,17 @@ export default function Footer() {
             <div className="text-center md:text-left">
               <div className="flex items-start justify-center md:justify-start">
                 <Image
-                  src="/flogo.png"
+                  src="/footerlogo22.png"
                   height={100}
                   width={100}
                   alt="Solvestic"
                   className="!h-14 w-auto object-cover"
                 />
               </div>
-              <p className="text-xs mt-2 ml-5 text-purple-300">
+              {/* <p className="text-xs mt-2 ml-5 text-purple-300">
                 Science-backed skincare.
                 <br className="hidden sm:block" /> Made for Indian skin.
-              </p>
+              </p> */}
             </div>
 
             {/* Divider */}
@@ -48,33 +48,33 @@ export default function Footer() {
 
             {/* Connect */}
             <div className="flex flex-col items-center gap-4">
-              <span className="text-xs tracking-widest text-purple-300">
+              <span className="text-xs tracking-widest text-white">
                 LET&apos;S CONNECT
               </span>
               <div className="flex items-center gap-6">
                 <div className="flex flex-col items-center gap-1.5">
                   <a href="https://www.instagram.com/solvesticcare">
-                    <div className="w-10 h-10 rounded-full border border-purple-700 flex items-center justify-center hover:bg-purple-900 transition">
-                      <FaInstagram className="text-purple-200" size={16} />
+                    <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
+                      <FaInstagram className="text-white" size={16} />
                     </div>
                   </a>
-                  <span className="text-xs text-purple-300">Instagram</span>
+                  <span className="text-xs text-white">Instagram</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <a href="https://www.facebook.com/profile.php?id=61592286175717">
-                    <div className="w-10 h-10 rounded-full border border-purple-700 flex items-center justify-center hover:bg-purple-900 transition">
-                      <FaFacebookF className="text-purple-200" size={16} />
+                    <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
+                      <FaFacebookF className="text-white" size={16} />
                     </div>
                   </a>
-                  <span className="text-xs text-purple-300">Facebook</span>
+                  <span className="text-xs text-white">Facebook</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <a href="https://www.youtube.com/@solvesticcare">
-                    <div className="w-10 h-10 rounded-full border border-purple-700 flex items-center justify-center hover:bg-purple-900 transition">
-                      <FaYoutube className="text-purple-200" size={16} />
+                    <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
+                      <FaYoutube className="text-white" size={16} />
                     </div>
                   </a>
-                  <span className="text-xs text-purple-300">YouTube</span>
+                  <span className="text-xs text-white">YouTube</span>
                 </div>
               </div>
             </div>
@@ -95,23 +95,23 @@ export default function Footer() {
           </div>
 
           {/* Bottom divider + copyright */}
-         <div className="mt-8 pt-6 border-t border-purple-800 text-center">
-  <p className="text-xs text-purple-300">
+         <div className="mt-8 pt-6 border-t border-white text-center">
+  <p className="text-xs text-white">
     © 2026 Solvestic. All rights reserved.
   </p>
 
-  <p className="mt-2 text-xs text-purple-300">
+  {/* <p className="mt-2 text-xs text-purple-300">
     Website Designed By{" "}
     <a
       href="https://inquirybazaar.com/"
       target="_blank"
       rel="noopener noreferrer"
-      className="font-semibold text-white hover:text-purple-200 transition-colors"
+      className="font-semibold text-white hover:text-white transition-colors"
     >
       Inquiry Bazaar Pvt. Ltd.
     </a>{" "}
     <span className="text-purple-400">B2B Marketplace</span>
-  </p>
+  </p> */}
 </div>
         </div>
       </footer>

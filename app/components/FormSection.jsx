@@ -1,0 +1,147 @@
+import React from "react";
+import {
+  FaArrowRight,
+  FaChevronDown,
+  FaEnvelope,
+  FaLock,
+  FaPhoneAlt,
+  FaUser,
+} from "react-icons/fa";
+import { PiSparkleFill } from "react-icons/pi";
+
+const InputField = ({
+  icon: Icon,
+  placeholder,
+  type = "text",
+  name,
+  required = false,
+}) => (
+  <div className="group flex items-center gap-3 bg-white border border-purple-100 rounded-xl px-4 py-3.5 w-full transition-all duration-200 hover:border-purple-200 focus-within:border-purple-400 focus-within:ring-4 focus-within:ring-purple-100">
+    <Icon
+      className="text-purple-800/70 shrink-0 group-focus-within:text-purple-600 transition-colors"
+      size={16}
+    />
+
+    <input
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      className="w-full outline-none text-sm text-gray-800 placeholder:text-gray-400 bg-transparent"
+    />
+  </div>
+);
+
+const SelectField = ({
+  icon: Icon,
+  label,
+  options,
+  name,
+  required = false,
+}) => (
+  <div className="group relative flex items-center gap-3 bg-white border border-purple-100 rounded-xl px-4 py-3.5 w-full transition-all duration-200 hover:border-purple-200 focus-within:border-purple-400 focus-within:ring-4 focus-within:ring-purple-100">
+    <Icon
+      className="text-purple-800/70 shrink-0 group-focus-within:text-purple-600 transition-colors"
+      size={17}
+    />
+
+    <select
+      name={name}
+      defaultValue=""
+      required={required}
+      className="w-full outline-none text-sm text-gray-500 bg-transparent appearance-none cursor-pointer pr-5"
+    >
+      <option value="" disabled>
+        {label}
+      </option>
+
+      {options.map((opt) => (
+        <option key={opt} value={opt} className="text-gray-700">
+          {opt}
+        </option>
+      ))}
+    </select>
+
+    <FaChevronDown
+      className="absolute right-4 text-gray-400 pointer-events-none"
+      size={11}
+    />
+  </div>
+);
+
+export default function FormSection() {
+  return (
+    <form className="w-full max-w-4xl px-5 pt-5 mx-auto">
+      {/* Form Heading */}
+      <div className="mb-6">
+        <h3 className="text-xl sm:text-2xl font-semibold text-purple-950">
+          Join Our Waitlist
+        </h3>
+
+        <p className="mt-1.5 text-sm text-gray-500">
+          Be the first to know when we launch. Get exclusive updates and
+          skincare tips.
+        </p>
+      </div>
+
+      {/* Name + Email */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+        <InputField
+          icon={FaUser}
+          placeholder="Full Name"
+          name="name"
+          required
+        />
+
+        <InputField
+          icon={FaEnvelope}
+          placeholder="Email Address"
+          type="email"
+          name="email"
+          required
+        />
+
+        <SelectField
+          icon={PiSparkleFill}
+          label="Skin Concern"
+          name="skinConcern"
+          required
+          options={[
+            "Pigmentation",
+            "Dryness",
+            "Dull & Uneven Skin",
+            "Acne & Blemishes",
+            "Fine Lines",
+            "Sensitive Skin",
+          ]}
+        />
+      </div>
+
+      {/* Phone + Skin Concern */}
+      <div className="grid   gap-3">
+       
+
+        
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="group mt-4 w-full bg-[#ad51c1] hover:bg-purple-900 active:scale-[0.99] transition-all duration-200 text-white font-semibold rounded-xl py-3.5 px-5 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+      >
+        <span>Join Waitlist</span>
+
+        <FaArrowRight
+          size={13}
+          className="group-hover:translate-x-1 transition-transform duration-200"
+        />
+      </button>
+
+      {/* Privacy Text */}
+      <p className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-gray-400 mt-3">
+        <FaLock size={10} />
+        Your information is safe with us. No spam, ever.
+      </p>
+    </form>
+  );
+}
