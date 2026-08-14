@@ -63,12 +63,12 @@ export default function Hero2() {
         {/* Mobile */}
         <source
           media="(max-width: 767px)"
-          srcSet="/mob.png"
+          srcSet="/mob22.webp"
         />
         {/* Desktop */}
         <div className="absolute inset-0 bg-black/20"></div>
         <Image
-          src="/desk.jpeg"
+          src="/desk22.webp"
           alt="Hero Banner"
           width={1920}
           height={700}
