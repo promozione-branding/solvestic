@@ -30,7 +30,7 @@ export default function Features() {
         </div>
 
         {/* ================= FEATURES GRID ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10  lg:gap-0 items-center">
           {/* ================= LEFT FEATURES ================= */}
           <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {/* Research Backed */}
@@ -146,27 +146,7 @@ export default function Features() {
       </div>
 
       {/* ================= ANIMATION CSS ================= */}
-      <style jsx>{`
-        .flip-card {
-          perspective: 1000px;
-          transform-style: preserve-3d;
-        }
-
-        .flip-card-image {
-          transform-origin: top center;
-          transform-style: preserve-3d;
-          backface-visibility: hidden;
-
-          transition:
-            transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.7s ease;
-        }
-
-        .flip-card:hover .flip-card-image {
-          transform: rotateX(115deg);
-          box-shadow: 0 25px 50px rgba(173, 81, 193, 0.25);
-        }
-      `}</style>
+      
     </section>
   );
 }
