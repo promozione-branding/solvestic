@@ -37,7 +37,7 @@ export default function Features() {
         </div>
 
         {/* ================= FEATURES GRID ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-0 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-20 items-center">
           {/* ================= LEFT FEATURES ================= */}
           <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {/* Research Backed */}
@@ -77,7 +77,7 @@ export default function Features() {
           </div>
 
           {/* ================= CENTER FLIP CARD ================= */}
-          <div className="relative flex justify-center order-first lg:order-none">
+          {/* <div className="relative flex justify-center order-first lg:order-none">
             <div className="flip-card relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
               <div className="absolute inset-0 transition-opacity duration-500 hover:opacity-15 flex flex-col items-center justify-center text-center p-6">
                 <h3 className="text-[#ad51c1] font-bold text-lg sm:text-xl">
@@ -89,7 +89,7 @@ export default function Features() {
                 </button>
               </div>
 
-              <div className="flip-card-image duration-200 absolute inset-0 overflow-hidden z-10">
+               <div className="flip-card-image duration-200 absolute inset-0 overflow-hidden z-10">
                 <div className="absolute inset-0 z-10 pointer-events-none" />
                 <Image
                   src="/newo.png"
@@ -98,11 +98,11 @@ export default function Features() {
                   className="object-cover"
                   priority
                 />
-              </div>
+              </div> 
 
               <div className="absolute -inset-3 pointer-events-none" />
             </div>
-          </div>
+          </div> */}
 
           {/* ================= RIGHT: STATS / TRUST PANEL ================= */}
           <div className="relative">

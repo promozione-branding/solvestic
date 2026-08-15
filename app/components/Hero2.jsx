@@ -1,17 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const TimeBox = ({ value, label }) => (
   <div className="flex flex-col items-center">
-    <div className="bg-white/85 backdrop-blur-sm rounded-lg px-3 sm:px-5 py-2 sm:py-3 shadow-md min-w-[58px] sm:min-w-[80px] text-center">
-      <span className="text-2xl  md:text-5xl font-bold text-[#B271C7] tabular-nums">
+    <div className="bg-white/90 backdrop-blur-sm rounded-xl px-3 sm:px-5 md:px-6 py-3 sm:py-4 shadow-lg min-w-[65px] sm:min-w-[85px] md:min-w-[105px] text-center border border-white/60">
+      <span className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#B271C7] tabular-nums">
         {String(value).padStart(2, "0")}
       </span>
     </div>
 
-    <span className="text-[9px] sm:text-xs tracking-wide text-white mt-1.5 font-semibold uppercase">
+    <span className="text-[9px] sm:text-xs md:text-sm tracking-widest text-[#8E5A9F] mt-2 font-semibold uppercase">
       {label}
     </span>
   </div>
@@ -57,52 +56,37 @@ export default function Hero2() {
   const { days, hours, minutes, seconds } = useCountdown(target);
 
   return (
-    <section className="relative w-full overflow-hidden">
-      {/* Banner */}
-      <picture className="bg-black/50">
-        {/* Mobile */}
-        <source
-          media="(max-width: 767px)"
-          srcSet="/mob3.webp"
-        />
-        {/* Desktop */}
-        <div className="absolute inset-0 bg-black/5"></div>
-        <Image
-          src="/nhu.jpeg"
-          alt="Hero Banner"
-          width={1920}
-          height={700}
-          priority
-          className="w-full  h-auto object-cover"
-        />
-      </picture>
+    <section className="relative w-full bg-[#EFDFE5] py-12 sm:py-16 md:py-24 overflow-hidden">
+      {/* Soft decorative circles */}
+      <div className="absolute -top-20 -left-20 w-52 h-52 bg-white/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-24 -right-20 w-64 h-64 bg-[#B271C7]/10 rounded-full blur-3xl" />
 
-      {/* Countdown Bottom */}
-      <div className="absolute bottom-4 sm:bottom-6 md:bottom-39 left-0 right-0">
-        <div className="flex justify-center">
-          <div className="flex justify-center">
-  <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
-    <TimeBox value={days} label="Days" />
+      {/* Countdown */}
+      <div className="relative z-10 flex flex-col items-center justify-center">
+        <p className="text-[#8E5A9F] text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-semibold mb-5 sm:mb-7">
+          Coming Soon
+        </p>
 
-    <span className="text-[#B271C7]  text-xl sm:text-2xl md:text-3xl font-bold pb-5">
-      :
-    </span>
+        <div className="flex items-center gap-1.5 sm:gap-3 md:gap-5">
+          <TimeBox value={days} label="Days" />
 
-    <TimeBox value={hours} label="Hours" />
+          <span className="text-[#B271C7] text-xl sm:text-3xl md:text-4xl font-bold pb-6">
+            :
+          </span>
 
-    <span className="text-[#B271C7] text-xl sm:text-2xl md:text-3xl font-bold pb-5">
-      :
-    </span>
+          <TimeBox value={hours} label="Hours" />
 
-    <TimeBox value={minutes} label="Minutes" />
+          <span className="text-[#B271C7] text-xl sm:text-3xl md:text-4xl font-bold pb-6">
+            :
+          </span>
 
-    <span className="text-[#B271C7]  text-xl sm:text-2xl md:text-3xl font-bold pb-5">
-      :
-    </span>
+          <TimeBox value={minutes} label="Minutes" />
 
-    <TimeBox value={seconds} label="Seconds" />
-  </div>
-</div>
+          <span className="text-[#B271C7] text-xl sm:text-3xl md:text-4xl font-bold pb-6">
+            :
+          </span>
+
+          <TimeBox value={seconds} label="Seconds" />
         </div>
       </div>
     </section>

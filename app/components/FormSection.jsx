@@ -141,7 +141,7 @@ export default function FormSection() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-4xl px-5 pt-5 mx-auto"
+      className="w-full max-w-4xl px-5 py-5 mx-auto"
     >
       {/* Form Heading */}
       <div className="mb-6">
