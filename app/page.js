@@ -15,6 +15,7 @@ import InstagramPosts from "./components/InstagramPosts";
 import Hero3 from "./components/Hero3";
 import LogoMarquee from "./components/LogoMarquee";
 import SkinConcerns from "./components/SkinConcerns";
+import Certifications from "./components/Certifications";
 
 export default function Page() {
   return (
@@ -27,6 +28,7 @@ export default function Page() {
       <FormSection />
       <LogoMarquee/>
       <SkinConcerns/>
+      <Certifications/>
       <InstagramPosts />
       {/* <Hero/> */}
       {/* <WhyJoins/> */}
