@@ -11,22 +11,31 @@ import StayConnected from "./components/StayConnected";
 import FormSection from "./components/FormSection";
 import Hero2 from "./components/Hero2";
 import Marquee from "./components/Marquee";
+import InstagramPosts from "./components/InstagramPosts";
+import Hero3 from "./components/Hero3";
+import LogoMarquee from "./components/LogoMarquee";
+import SkinConcerns from "./components/SkinConcerns";
 
 export default function Page() {
   return (
     <>
-    <Marquee/>
-    <Header/>
-    <Hero2/>
-    <FormSection/>
-    {/* <Hero/> */}
-    {/* <WhyJoins/> */}
-    {/* <Countdown/> */}
-    {/* <Understand/> */}
-    <Features/>
-    <StayConnected/>
-    <Footer/>
-        {/* <Home/> */}
+      <Header />
+
+      <Hero3 />
+      <Marquee />
+      <Hero2 />
+      <FormSection />
+      <LogoMarquee/>
+      <SkinConcerns/>
+      <InstagramPosts />
+      {/* <Hero/> */}
+      {/* <WhyJoins/> */}
+      {/* <Countdown/> */}
+      {/* <Understand/> */}
+      <Features />
+      <StayConnected />
+      <Footer />
+      {/* <Home/> */}
     </>
   );
 }
