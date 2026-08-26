@@ -7,15 +7,15 @@ const skinConcerns = [
   {
     title: "Melasma",
     description: "Target uneven pigmentation",
-    image: "10.webp",
+    image: "melasma.webp",
   },
   {
-    title: "Acne Marks",
+    title: "Post Acne Marks",
     description: "Fade marks & improve texture",
     image: "11.webp",
   },
   {
-    title: "Dryness",
+    title: "Uneven Skin Tone",
     description: "Bring back deep hydration",
     image: "12.webp",
   },
