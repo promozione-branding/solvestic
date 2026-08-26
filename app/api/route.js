@@ -24,19 +24,8 @@ async function checkAdmin() {
 
 export async function GET() {
   try {
-    const isAdmin = await checkAdmin();
 
-    if (!isAdmin) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Unauthorized",
-        },
-        {
-          status: 401,
-        },
-      );
-    }
+  
 
     await connectDB();
 
