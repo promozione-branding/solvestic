@@ -26,17 +26,19 @@ export default function Page() {
       <Header />
 
       <Hero3 />
+            <Marquee />
+
       <Hero2 />
       <FormSection />
       <LogoMarquee />
       <SkinConcerns />
       <Certifications />
-      <InstagramPosts />
       {/* <Hero/> */}
       {/* <WhyJoins/> */}
       {/* <Countdown/> */}
       {/* <Understand/> */}
       <Features />
+      <InstagramPosts />
       {/* <StayConnected /> */}
       <Footer />
       {/* <Home/> */}

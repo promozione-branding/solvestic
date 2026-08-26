@@ -11,7 +11,7 @@ export default function Header() {
               src="/newlogo1.png"
               height={100}
               width={100}
-              className=" h-30 w-auto object-contain  "
+              className=" h-40 w-auto object-contain  "
             />
             {/* <span className="text-pink-500 text-2xl sm:text-3xl font-bold">
             .

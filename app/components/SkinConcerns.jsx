@@ -191,7 +191,7 @@ const SkinConcerns = () => {
                       hidden
                       items-center
                       justify-center
-                      bg-white/95
+                      bg-white/85
                       p-8
                       text-center
                       opacity-0
