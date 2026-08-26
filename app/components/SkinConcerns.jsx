@@ -6,22 +6,26 @@ import { motion, AnimatePresence } from "framer-motion";
 const skinConcerns = [
   {
     title: "Sun Tan",
-    description: "Restore your skin's natural glow",
+    description:
+      "Prolonged sun exposure can leave skin looking darker, dull and uneven. Tan buildup affects your natural radiance, making the complexion appear tired, patchy and less luminous.",
     image: "9.webp",
   },
   {
     title: "Melasma",
-    description: "Target uneven pigmentation",
+    description:
+      "Melasma causes stubborn, uneven dark patches, often appearing on the cheeks and other facial areas. It can make your complexion look visibly uneven and reduce your skin’s natural glow.",
     image: "11.webp",
   },
   {
     title: "Post Acne Marks",
-    description: "Fade marks & improve texture",
+    description:
+      "Acne may fade, but the marks can stay behind. Dark spots and uneven texture left after breakouts can make skin look dull, uneven and less smooth.",
     image: "444.webp",
   },
   {
     title: "Uneven Skin Tone",
-    description: "Bring back deep hydration",
+    description:
+      "Uneven skin tone creates visible differences in complexion across the face. Dark patches, redness and pigmentation can make skin appear dull, inconsistent and less naturally radiant.",
     image: "12.webp",
   },
 ];
@@ -224,7 +228,7 @@ const SkinConcerns = () => {
         {/* CTA */}
         <div className="mt-12 text-center">
           <button className="rounded-full bg-gray-900 px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-purple-600">
-            Find the right care
+            Find the right care with Us
           </button>
         </div>
       </div>
