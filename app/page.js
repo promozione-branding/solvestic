@@ -17,6 +17,7 @@ import LogoMarquee from "./components/LogoMarquee";
 import SkinConcerns from "./components/SkinConcerns";
 import Certifications from "./components/Certifications";
 import LaunchTopBar from "./components/LaunchTopBar";
+import Marquee2 from "./components/Marquee2";
 
 export default function Page() {
   return (
@@ -26,7 +27,7 @@ export default function Page() {
       <Header />
 
       <Hero3 />
-            <Marquee />
+      <Marquee2 />
 
       <Hero2 />
       <FormSection />
