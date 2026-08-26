@@ -36,7 +36,6 @@ const SkinConcerns = () => {
       <div className="pointer-events-none absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-pink-200/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
-
         {/* Heading */}
         <div className="mb-12 text-center">
           <span className="mb-3 inline-block rounded-full bg-purple-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-purple-600">
@@ -52,8 +51,8 @@ const SkinConcerns = () => {
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-gray-500 sm:text-base">
-            Every skin has a story. Discover targeted care designed to bring
-            out your healthiest, most radiant skin.
+            Every skin has a story. Discover targeted care designed to bring out
+            your healthiest, most radiant skin.
           </p>
         </div>
 
@@ -79,7 +78,6 @@ const SkinConcerns = () => {
               >
                 {/* Image */}
                 <div className="relative h-[330px] overflow-hidden sm:h-[360px]">
-
                   <img
                     src={item.image}
                     alt={item.title}
@@ -91,7 +89,7 @@ const SkinConcerns = () => {
                     `}
                   />
 
-                  {/* Gradient */}
+                  {/* Base gradient */}
                   <div
                     className={`
                       absolute inset-0
@@ -103,14 +101,14 @@ const SkinConcerns = () => {
                   />
 
                   {/* Number */}
-                  <span className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-xs font-bold text-purple-600 backdrop-blur-md">
+                  <span className="absolute left-5 top-5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-xs font-bold text-purple-600 backdrop-blur-md">
                     0{index + 1}
                   </span>
 
-                  {/* ================= MOBILE TITLE ================= */}
+                  {/* ================= MOBILE DEFAULT TITLE ================= */}
                   <div
                     className={`
-                      absolute bottom-0 left-0 w-full p-6
+                      absolute bottom-0 left-0 z-10 w-full p-6
                       transition-all duration-500
                       md:group-hover:translate-y-5
                       md:group-hover:opacity-0
@@ -121,98 +119,101 @@ const SkinConcerns = () => {
                       {item.title}
                     </h3>
 
-                    <p className="mt-1 text-sm text-white/80">
+                    {/* <p className="mt-1 text-sm text-white/80">
                       {item.description}
-                    </p>
+                    </p> */}
                   </div>
 
-                  {/* ================= MOBILE CLICK PANEL ================= */}
+                  {/* ================================================= */}
+                  {/* MOBILE - FULL CARD OVERLAY ON CLICK */}
+                  {/* ================================================= */}
                   <AnimatePresence>
                     {isActive && (
                       <motion.div
                         initial={{
-                          y: "100%",
+                          opacity: 0,
+                          scale: 1.05,
                         }}
                         animate={{
-                          y: 0,
+                          opacity: 1,
+                          scale: 1,
                         }}
                         exit={{
-                          y: "100%",
+                          opacity: 0,
+                          scale: 1.05,
                         }}
                         transition={{
                           duration: 0.45,
                           ease: [0.22, 1, 0.36, 1],
                         }}
                         className="
-                          absolute
-                          bottom-0
-                          left-0
-                          z-20
-                          w-full
-                          rounded-t-[1.5rem]
-                          bg-white
-                          p-6
+                          absolute inset-0 z-20
+                          flex items-center justify-center
+                          bg-white/95
+                          p-8
+                          text-center
                           md:hidden
                         "
                       >
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-purple-500">
-                          Skin Concern
-                        </span>
+                        <div className="flex max-w-[260px] flex-col items-center">
+                          <span className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-purple-500">
+                            Skin Concern
+                          </span>
 
-                        <h3 className="mt-1 text-2xl font-bold text-gray-900">
-                          {item.title}
-                        </h3>
+                          <h3 className="text-3xl font-bold tracking-tight text-gray-900">
+                            {item.title}
+                          </h3>
 
-                        <p className="mt-2 text-sm leading-6 text-gray-500">
-                          {item.description}
-                        </p>
+                          <span className="my-4 h-px w-10 bg-purple-300" />
 
-                        {/* <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-900">
-                          Explore care
-                          <span>→</span>
-                        </div> */}
+                          <p className="text-sm leading-6 text-gray-500">
+                            {item.description}
+                          </p>
+
+                          <span className="mt-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-400">
+                            Tap to close
+                          </span>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
 
-                  {/* ================= DESKTOP HOVER PANEL ================= */}
+                  {/* ================================================= */}
+                  {/* DESKTOP - FULL CARD OVERLAY ON HOVER */}
+                  {/* ================================================= */}
                   <div
                     className="
-                      absolute
-                      bottom-0
-                      left-0
-                      z-20
+                      absolute inset-0 z-20
                       hidden
-                      w-full
-                      translate-y-full
-                      rounded-t-[1.5rem]
-                      bg-white
-                      p-6
+                      items-center
+                      justify-center
+                      bg-white/95
+                      p-8
+                      text-center
                       opacity-0
-                      shadow-[0_-10px_30px_rgba(0,0,0,0.08)]
                       transition-all
                       duration-500
-                      md:block
-                      md:group-hover:translate-y-0
+                      md:flex
+                      md:scale-105
+                      md:group-hover:scale-100
                       md:group-hover:opacity-100
                     "
                   >
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-purple-500">
-                      Skin Concern
-                    </span>
+                    <div className="flex max-w-[260px] flex-col items-center">
+                      <span className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-purple-500">
+                        Skin Concern
+                      </span>
 
-                    <h3 className="mt-1 text-2xl font-bold text-gray-900">
-                      {item.title}
-                    </h3>
+                      <h3 className="text-3xl font-bold tracking-tight text-gray-900">
+                        {item.title}
+                      </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-gray-500">
-                      {item.description}
-                    </p>
+                      <span className="my-4 h-px w-10 bg-purple-300" />
 
-                    {/* <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-900">
-                      Explore care
-                      <span>→</span>
-                    </div> */}
+                      <p className="text-sm leading-6 text-gray-500">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
