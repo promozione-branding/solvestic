@@ -23,7 +23,7 @@ const certifications = [
     image: "/3.webp",
   },
   {
-    title: "SULPHATE",
+    title: "SULPHATE,Paraben & CRUELTY",
     subtitle: "FREE",
     description: "Clean Formulation",
     image: "/4.webp",
@@ -88,8 +88,6 @@ export default function Certifications() {
           <h2 className="text-2xl font-semibold uppercase tracking-[0.12em] text-gray-900 sm:text-3xl md:text-4xl lg:text-5xl">
             Our Certifications
           </h2>
-
-        
         </motion.div>
 
         {/* ================= CERTIFICATION GRID ================= */}
@@ -181,7 +179,6 @@ export default function Certifications() {
         </motion.div>
 
         {/* ================= BOTTOM TRUST LINE ================= */}
-       
       </div>
     </section>
   );
