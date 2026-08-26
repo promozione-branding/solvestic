@@ -16,19 +16,21 @@ import Hero3 from "./components/Hero3";
 import LogoMarquee from "./components/LogoMarquee";
 import SkinConcerns from "./components/SkinConcerns";
 import Certifications from "./components/Certifications";
+import LaunchTopBar from "./components/LaunchTopBar";
 
 export default function Page() {
   return (
     <>
+      <LaunchTopBar />
       <Header />
 
       <Hero3 />
       <Marquee />
       <Hero2 />
       <FormSection />
-      <LogoMarquee/>
-      <SkinConcerns/>
-      <Certifications/>
+      <LogoMarquee />
+      <SkinConcerns />
+      <Certifications />
       <InstagramPosts />
       {/* <Hero/> */}
       {/* <WhyJoins/> */}
