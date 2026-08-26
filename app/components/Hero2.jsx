@@ -73,7 +73,8 @@ export default function Hero2() {
 
       {/* Soft decorative circles */}
       <div className="absolute -left-20 -top-20 h-52 w-52 rounded-full bg-white/30 blur-3xl" />
-
+      <div className="absolute inset-0 bg-white/30" />
+        
       <div className="absolute -bottom-24 -right-20 h-64 w-64 rounded-full bg-[#B271C7]/10 blur-3xl" />
 
       {/* Countdown */}

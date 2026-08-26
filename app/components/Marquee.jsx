@@ -11,7 +11,7 @@ export default function Marquee() {
   ];
 
   return (
-    <div className="w-full overflow-hidden bg-[#b1a2cf] py-3 text-white">
+    <div className="w-full overflow-hidden bg-[#7eaff7] py-3 text-white">
       <motion.div
         className="flex w-max"
         animate={{

@@ -21,11 +21,11 @@ import LaunchTopBar from "./components/LaunchTopBar";
 export default function Page() {
   return (
     <>
-      <LaunchTopBar />
+      {/* <LaunchTopBar /> */}
+      <Marquee />
       <Header />
 
       <Hero3 />
-      <Marquee />
       <Hero2 />
       <FormSection />
       <LogoMarquee />
@@ -37,7 +37,7 @@ export default function Page() {
       {/* <Countdown/> */}
       {/* <Understand/> */}
       <Features />
-      <StayConnected />
+      {/* <StayConnected /> */}
       <Footer />
       {/* <Home/> */}
     </>

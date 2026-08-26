@@ -20,17 +20,17 @@ export default function Features() {
       <div className="max-w-container-max mx-auto">
         {/* ================= HEADING ================= */}
         <div className="text-center mb-10 sm:mb-14 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-headline-md font-headline-md text-[#ad51c1] mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-headline-md font-headline-md text-[#a980d7] mb-3 sm:mb-4">
             Building Skincare That Truly Matters
           </h2>
 
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="w-12 sm:w-16 h-[2px] bg-[#ad51c1] rounded-full" />
-            <span className="w-2 h-2 rounded-full bg-[#ad51c1]" />
-            <span className="w-12 sm:w-16 h-[2px] bg-[#ad51c1] rounded-full" />
+            <span className="w-12 sm:w-16 h-[2px] bg-[#a980d7] rounded-full" />
+            <span className="w-2 h-2 rounded-full bg-[#a980d7]" />
+            <span className="w-12 sm:w-16 h-[2px] bg-[#a980d7] rounded-full" />
           </div>
 
-          <p className="text-sm sm:text-base lg:text-body-md font-body-md text-[#ad51c1] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-body-md font-body-md text-[#a980d7] max-w-2xl mx-auto leading-relaxed">
             We're here to simplify your skincare journey with smart, effective
             and intelligent solutions
           </p>
@@ -42,16 +42,16 @@ export default function Features() {
           <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {/* Research Backed */}
             <div className="flex items-start gap-4 lg:flex-row-reverse lg:text-right">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 bg-[#ad51c1] rounded-lg flex items-center justify-center text-white">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 bg-[#a980d7] rounded-lg flex items-center justify-center text-white">
                 <FaFlask size={20} className="sm:w-[22px] sm:h-[22px]" />
               </div>
 
               <div className="flex-1">
-                <h4 className="text-base sm:text-lg lg:font-bold font-label-bold text-[#ad51c1] mb-1.5 sm:mb-2">
+                <h4 className="text-base sm:text-lg lg:font-bold font-label-bold text-[#a980d7] mb-1.5 sm:mb-2">
                   ROOTED IN INNOVATION
                 </h4>
 
-                <p className="text-sm sm:text-base lg:text-caption font-caption text-[#ad51c1] leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-caption font-caption text-[#a980d7] leading-relaxed">
                   Backed by science and crafted with care to suit Indian skin
                 </p>
               </div>
@@ -59,16 +59,16 @@ export default function Features() {
 
             {/* Personalized Care */}
             <div className="flex items-start gap-4 lg:flex-row-reverse lg:text-right">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 bg-[#ad51c1] rounded-lg flex items-center justify-center text-white">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 bg-[#a980d7] rounded-lg flex items-center justify-center text-white">
                 <FaUserCheck size={20} className="sm:w-[22px] sm:h-[22px]" />
               </div>
 
               <div className="flex-1">
-                <h4 className="text-base sm:text-lg lg:font-bold font-label-bold text-[#ad51c1] mb-1.5 sm:mb-2">
+                <h4 className="text-base sm:text-lg lg:font-bold font-label-bold text-[#a980d7] mb-1.5 sm:mb-2">
                   REAL PEOPLE, REAL IMPACT
                 </h4>
 
-                <p className="text-sm sm:text-base lg:text-caption font-caption text-[#ad51c1] leading-relaxed">
+                <p className="text-sm sm:text-base lg:text-caption font-caption text-[#a980d7] leading-relaxed">
                   We listen, we learn and we build with our community at the
                   heart.
                 </p>
@@ -106,14 +106,14 @@ export default function Features() {
 
           {/* ================= RIGHT: STATS / TRUST PANEL ================= */}
           <div className="relative">
-            <div className="relative overflow-hidden rounded-3xl bg-[#ad51c1] px-6 py-8 sm:px-8 sm:py-10 text-white shadow-lg shadow-[#ad51c1]/20">
+            <div className="relative overflow-hidden rounded-3xl bg-[#a980d7] px-6 py-8 sm:px-8 sm:py-10 text-white shadow-lg shadow-[#ad51c1]/20">
               {/* decorative glow */}
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
               <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-white/10 rounded-full blur-2xl" />
 
               <div className="relative flex items-center gap-2 mb-6">
                 <HiSparkles size={18} />
-                <span className="text-xs tracking-widest uppercase font-semibold text-white/80">
+                <span className="text-xs tracking-widest uppercase font-semibold text-white">
                   Trusted Results
                 </span>
               </div>
@@ -122,7 +122,7 @@ export default function Features() {
                 {RIGHT_TAGS.map((tag, i) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white/15 backdrop-blur-sm border border-white/25 hover:bg-white hover:text-[#ad51c1] transition-colors duration-300 cursor-default"
+                    className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white/15 backdrop-blur-sm border border-white hover:bg-white hover:text-[#ad51c1] transition-colors duration-300 cursor-default"
                     style={{ animationDelay: `${i * 60}ms` }}
                   >
                     {tag}
@@ -130,7 +130,7 @@ export default function Features() {
                 ))}
               </div>
 
-              <p className="relative text-xs sm:text-sm text-white/90 leading-relaxed mt-8 border-t border-white/20 pt-5">
+              <p className="relative text-xs sm:text-sm text-white leading-relaxed mt-8 border-t border-white/20 pt-5">
                 Every formula is built around what your skin actually needs —
                 simple, intelligent and thoughtfully made.
               </p>

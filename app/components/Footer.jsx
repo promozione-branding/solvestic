@@ -8,7 +8,7 @@ export default function Footer() {
       
 
       {/* ---------- Footer ---------- */}
-      <footer className="relative bg-[#ad51c1] text-white">
+      <footer className="relative bg-[#a980d7] text-white">
         {/* Wave top edge */}
         <div className="absolute -top-px left-0 w-full overflow-hidden leading-none translate-y-[-99%]">
           <svg
@@ -19,7 +19,7 @@ export default function Footer() {
             <path
               d="M0,40 C240,100 360,0 600,20 C860,42 980,90 1200,55 C1320,38 1380,45 1440,30 L1440,100 L0,100 Z"
               fill="currentColor"
-              className="text-[#ad51c1]"
+              className="text-[#a980d7]"
             />
           </svg>
         </div>
