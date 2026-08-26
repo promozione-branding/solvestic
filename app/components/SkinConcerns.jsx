@@ -227,9 +227,9 @@ const SkinConcerns = () => {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <button className="rounded-full bg-gray-900 px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-purple-600">
+          <a href="#form"  className="rounded-full bg-gray-900 px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-purple-600">
             Find the right care with us
-          </button>
+          </a>
         </div>
       </div>
     </section>

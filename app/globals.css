@@ -65,6 +65,23 @@ body {
   font-family: pop;
 } */
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: offset for fixed/sticky navbar */
+#formf {
+  scroll-margin-top: 80px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 
 @keyframes floatBlob {
   0% {

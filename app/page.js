@@ -27,7 +27,8 @@ export default function Page() {
       <Header />
 
       <Hero3 />
-      <Marquee2 />
+      {/* <Marquee2 /> */}
+      <div className="h-5 bg-white"></div>
 
       <Hero2 />
       <FormSection />
