@@ -7,7 +7,7 @@ export default function Hero3() {
         {/* Mobile Image */}
         <source
           media="(max-width: 767px)"
-          srcSet="/2.webp"
+          srcSet="/mobbannew.webp"
         />
 
         {/* Desktop Image */}
