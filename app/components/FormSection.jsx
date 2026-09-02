@@ -11,11 +11,12 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { PiSparkleFill } from "react-icons/pi";
+import { MdOutlinePlace } from "react-icons/md";
 
 const InputField = ({
   icon: Icon,
   placeholder,
-  type = "text",
+  type ,
   name,
   required = false,
 }) => (
@@ -92,7 +93,7 @@ export default function FormSection() {
       company: "N/A",
       phone: formData.get("phone"),
       product: formData.get("skinConcern"),
-      place: "N/A",
+      place: formData.get("place"),
       message: "N/A",
     };
 
@@ -157,7 +158,7 @@ export default function FormSection() {
       </div>
 
       {/* Name + Email */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-2 mb-3">
         <InputField
           icon={FaUser}
           placeholder="Full Name"
@@ -178,6 +179,14 @@ export default function FormSection() {
           placeholder="Phone Number"
           type="tel"
           name="phone"
+          required
+        />
+
+        <InputField
+          icon={MdOutlinePlace}
+          placeholder="Place"
+          type="text"
+          name="place"
           required
         />
 
