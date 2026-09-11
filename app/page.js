@@ -18,6 +18,7 @@ import SkinConcerns from "./components/SkinConcerns";
 import Certifications from "./components/Certifications";
 import LaunchTopBar from "./components/LaunchTopBar";
 import Marquee2 from "./components/Marquee2";
+import Problems from "./components/Problems";
 
 export default function Page() {
   return (
@@ -28,7 +29,7 @@ export default function Page() {
 
       <Hero3 />
       {/* <Marquee2 /> */}
-      <div className="h-5 bg-white"></div>
+      <Problems/>
 
       <Hero2 />
       <FormSection />

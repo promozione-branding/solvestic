@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ import { MdOutlinePlace } from "react-icons/md";
 const InputField = ({
   icon: Icon,
   placeholder,
-  type ,
+  type,
   name,
   required = false,
 }) => (
@@ -111,7 +111,7 @@ export default function FormSection() {
         data,
         {
           validateStatus: (status) => status >= 200 && status < 500,
-        }
+        },
       );
 
       if (res.status >= 200 && res.status < 300) {
@@ -207,26 +207,45 @@ export default function FormSection() {
       </div>
 
       {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="group mt-4 w-full bg-[#a980d7] hover:bg-purple-900 active:scale-[0.99] transition-all duration-200 text-white font-semibold rounded-xl py-3.5 px-5 flex items-center justify-center gap-2 shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        <span>
-          {loading
-            ? "Submitting..."
-            : submitted
-              ? "Joined Successfully!"
-              : "Join Waitlist"}
-        </span>
+     
+<div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+  {/* Launch Offer - 70% */}
+  <div className="relative inline-flex w-full flex-1 sm:flex-[7]">
+    {/* Animated border */}
+    <span className="pointer-events-none absolute inset-0 rounded-full border border-pink-500 animate-[borderPing_1.8s_ease-out_infinite]" />
 
-        {!loading && !submitted && (
-          <FaArrowRight
-            size={13}
-            className="group-hover:translate-x-1 transition-transform duration-200"
-          />
-        )}
-      </button>
+    {/* Content */}
+    <div className="relative z-10 inline-flex w-full justify-center items-center gap-2 rounded-full border border-pink-200/70 bg-gradient-to-r from-pink-400 to-purple-600 px-4 py-2 shadow-sm">
+      <span className="ml-3 text-sm font-semibold tracking-tight text-white">
+        A little reward for being early—get 10% OFF at launch! 🎁
+      </span>
+    </div>
+  </div>
+
+  {/* Join Waitlist Button - 30% */}
+  <button
+    type="submit"
+    disabled={loading}
+    className="group flex w-full flex-1 items-center justify-center gap-2 rounded-xl bg-[#a980d7] px-5 py-2 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-purple-900 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:flex-[3]"
+  >
+    <span>
+      {loading
+        ? "Submitting..."
+        : submitted
+          ? "Joined Successfully!"
+          : "Join Waitlist"}
+    </span>
+
+    {!loading && !submitted && (
+      <FaArrowRight
+        size={13}
+        className="transition-transform duration-200 group-hover:translate-x-1"
+      />
+    )}
+  </button>
+</div>
+
+
 
       {/* Privacy Text */}
       <p className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-gray-400 mt-3">
