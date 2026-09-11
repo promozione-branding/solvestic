@@ -216,7 +216,7 @@ export default function FormSection() {
 
     {/* Content */}
     <div className="relative z-10 inline-flex w-full justify-center items-center gap-2 rounded-full border border-pink-200/70 bg-gradient-to-r from-pink-400 to-purple-600 px-4 py-2 shadow-sm">
-      <span className="ml-3 text-sm font-semibold tracking-tight text-white">
+      <span className="ml-3 text-center text-sm font-semibold tracking-tight text-white">
         A little reward for being early—get 10% OFF at launch! 🎁
       </span>
     </div>
