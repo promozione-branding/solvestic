@@ -9,55 +9,53 @@ const problems = [
   "Uneven Skin Tone",
 ];
 
+// Make one long continuous set
+const marqueeItems = [...problems, ...problems, ...problems];
+
+function MarqueeSet({ duplicate = false }) {
+  return (
+    <div
+      className="flex shrink-0 items-center"
+      aria-hidden={duplicate}
+    >
+      {marqueeItems.map((problem, index) => (
+        <div
+          key={`${duplicate ? "second" : "first"}-${index}`}
+          className="flex shrink-0 items-center gap-8 px-4 sm:gap-10 sm:px-6"
+        >
+          <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.14em] text-purple-900 sm:text-sm">
+            {problem}
+          </span>
+
+          <span className="text-sm text-purple-300">•</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Problems() {
   return (
-    <div className="relative flex h-10 w-full items-center overflow-hidden border-y border-purple-100 bg-purple-50/60">
-      {/* Left fade */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-purple-50 via-purple-50/80 to-transparent" />
-
-      {/* Right fade */}
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-purple-50 via-purple-50/80 to-transparent" />
-
+    <div className="w-full overflow-hidden bg-white">
       <motion.div
-        className="flex w-max shrink-0"
-        animate={{ x: "-50%" }}
+        className="flex h-[30px] w-max items-center"
+        animate={{
+          x: ["0%", "-50%"],
+        }}
         transition={{
-          duration: 18,
-          ease: "linear",
+          duration: 25,
           repeat: Infinity,
+          ease: "linear",
+        }}
+        style={{
+          willChange: "transform",
         }}
       >
-        {/* Group 1 */}
-        <div className="flex shrink-0 items-center gap-10 pr-10">
-          {problems.map((problem) => (
-            <div
-              key={`first-${problem}`}
-              className="flex shrink-0 items-center gap-10"
-            >
-              <span className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.16em] text-purple-900 sm:text-xs">
-                {problem}
-              </span>
+        {/* First set */}
+        <MarqueeSet />
 
-              <span className="text-purple-300">•</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Group 2 — exact duplicate */}
-        <div className="flex shrink-0 items-center gap-10 pr-10">
-          {problems.map((problem) => (
-            <div
-              key={`second-${problem}`}
-              className="flex shrink-0 items-center gap-10"
-            >
-              <span className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.16em] text-purple-900 sm:text-xs">
-                {problem}
-              </span>
-
-              <span className="text-purple-300">•</span>
-            </div>
-          ))}
-        </div>
+        {/* Exact duplicate */}
+        <MarqueeSet duplicate />
       </motion.div>
     </div>
   );
