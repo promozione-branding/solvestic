@@ -143,11 +143,11 @@ export default function FormSection() {
     <form
       id="form"
       onSubmit={handleSubmit}
-      className="w-full max-w-4xl px-5 py-5 mx-auto scroll-mt-10  "
+      className="w-full max-w-4xl px-5 py-8 mx-auto scroll-mt-10  "
     >
       {/* Form Heading */}
       <div className="mb-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-purple-950">
+        <h3 className="text-xl sm:text-3xl font-semibold text-purple-950">
           Join Our Waitlist
         </h3>
 
@@ -207,43 +207,43 @@ export default function FormSection() {
       </div>
 
       {/* Submit Button */}
-     
-<div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
-  {/* Launch Offer - 70% */}
-  <div className="relative inline-flex w-full flex-1 sm:flex-[7]">
-    {/* Animated border */}
-    <span className="pointer-events-none absolute inset-0 rounded-full border border-pink-500 animate-[borderPing_1.8s_ease-out_infinite]" />
 
-    {/* Content */}
-    <div className="relative z-10 inline-flex w-full justify-center items-center gap-2 rounded-full border border-pink-200/70 bg-gradient-to-r from-pink-400 to-purple-600 px-4 py-2 shadow-sm">
-      <span className="ml-3 text-center text-sm font-semibold tracking-tight text-white">
-        A little reward for being early—get 10% OFF at launch! 🎁
-      </span>
-    </div>
-  </div>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+        {/* Launch Offer - 70% */}
+        <div className="relative inline-flex w-full flex-1 sm:flex-[7]">
+          {/* Animated border */}
+          <span className="pointer-events-none absolute inset-0 rounded-full border border-pink-500 animate-[borderPing_1.8s_ease-out_infinite]" />
 
-  {/* Join Waitlist Button - 30% */}
-  <button
-    type="submit"
-    disabled={loading}
-    className="group flex w-full flex-1 items-center justify-center gap-2 rounded-xl bg-[#a980d7] px-5 py-2 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-purple-900 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:flex-[3]"
-  >
-    <span>
-      {loading
-        ? "Submitting..."
-        : submitted
-          ? "Joined Successfully!"
-          : "Join Waitlist"}
-    </span>
+          {/* Content */}
+          <div className="relative z-10 inline-flex w-full justify-center items-center gap-2 rounded-full border border-pink-200/70 bg-gradient-to-r from-pink-400 to-purple-600 px-4 py-2 shadow-sm">
+            <span className="ml-3 text-center text-sm font-semibold tracking-tight text-white">
+              A chance to be featured on Solvestic’s website.
+            </span>
+          </div>
+        </div>
 
-    {!loading && !submitted && (
-      <FaArrowRight
-        size={13}
-        className="transition-transform duration-200 group-hover:translate-x-1"
-      />
-    )}
-  </button>
-</div>
+        {/* Join Waitlist Button - 30% */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="group flex w-full flex-1 items-center justify-center gap-2 rounded-xl bg-[#a980d7] px-5 py-2 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-purple-900 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:flex-[3]"
+        >
+          <span>
+            {loading
+              ? "Submitting..."
+              : submitted
+                ? "Joined Successfully!"
+                : "Join Waitlist"}
+          </span>
+
+          {!loading && !submitted && (
+            <FaArrowRight
+              size={13}
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            />
+          )}
+        </button>
+      </div>
 
 
 

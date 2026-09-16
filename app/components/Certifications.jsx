@@ -56,7 +56,7 @@ const cardVariants = {
 
 export default function Certifications() {
   return (
-    <section className="relative overflow-hidden bg-[#faf9f7] py-6 md:py-12">
+    <section className="relative overflow-hidden bg-[#FAF8FF] py-6 md:py-12">
       {/* Background decoration */}
       <div className="pointer-events-none absolute -left-40 top-10 h-80 w-80 rounded-full bg-[#eee9e2] opacity-50 blur-[100px]" />
 

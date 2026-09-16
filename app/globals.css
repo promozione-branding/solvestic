@@ -21,7 +21,7 @@
 }
 
 body {
-  background: #fdf3f6;
+  background: #FAF8FF;
   color: var(--foreground);
   font-family: 'DM Sans', sans-serif;
 }
@@ -55,7 +55,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   /* font-style: normal; */
-/* } */ 
+/* } */
 
 /* p{
   font-family: lato;
@@ -87,15 +87,19 @@ html {
   0% {
     transform: translate(0px, 0px) scale(1);
   }
+
   25% {
     transform: translate(20px, -30px) scale(1.05);
   }
+
   50% {
     transform: translate(-15px, 20px) scale(0.98);
   }
+
   75% {
     transform: translate(25px, 10px) scale(1.03);
   }
+
   100% {
     transform: translate(0px, 0px) scale(1);
   }

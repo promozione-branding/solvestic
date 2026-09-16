@@ -19,22 +19,28 @@ import Certifications from "./components/Certifications";
 import LaunchTopBar from "./components/LaunchTopBar";
 import Marquee2 from "./components/Marquee2";
 import Problems from "./components/Problems";
+import AirPodsGiveaway from "./components/AirPodsGiveaway";
+import Founding100Section from "./components/Founding100Section";
+import FounderDiarySection from "./components/FounderDiarySection";
 
 export default function Page() {
   return (
     <>
       {/* <LaunchTopBar /> */}
-      <Marquee />
+      {/* <Marquee /> */}
       <Header />
 
       <Hero3 />
       {/* <Marquee2 /> */}
-      <Problems/>
+      <Problems />
 
-      <Hero2 />
+      {/* <Hero2 /> */}
       <FormSection />
+      <Founding100Section />
       <LogoMarquee />
       <SkinConcerns />
+      <FounderDiarySection />
+      <AirPodsGiveaway />
       <Certifications />
       {/* <Hero/> */}
       {/* <WhyJoins/> */}
