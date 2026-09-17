@@ -574,7 +574,7 @@ export default function AirPodsGiveaway() {
                             </div>
 
                             {/* Bottom badge */}
-                            <div className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full border border-[#e8dfe9] bg-white px-3 py-1.5 shadow-[0_5px_18px_rgba(60,35,70,0.06)]">
+                            <div className="absolute bottom-4 left-4 hidden sm:flex items-center gap-1.5 rounded-full border border-[#e8dfe9] bg-white px-3 py-1.5 shadow-[0_5px_18px_rgba(60,35,70,0.06)]">
                                 <Gift size={10} className="text-[#8c639c]" />
 
                                 <span className="text-[7px] font-black uppercase tracking-[0.15em] text-[#795d84]">

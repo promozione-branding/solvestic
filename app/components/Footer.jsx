@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaSnapchatGhost, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <div className="mt-20">
-      
+
 
       {/* ---------- Footer ---------- */}
       <footer className="relative bg-[#ab82d8] text-white">
@@ -51,7 +51,7 @@ export default function Footer() {
               <span className="text-xs tracking-widest text-white">
                 LET&apos;S CONNECT
               </span>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center sm:gap-6 gap-4">
                 <div className="flex flex-col items-center gap-1.5">
                   <a href="https://www.instagram.com/solvesticcare">
                     <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
@@ -76,6 +76,22 @@ export default function Footer() {
                   </a>
                   <span className="text-xs text-white">YouTube</span>
                 </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <a href="https://www.youtube.com/@solvesticcare">
+                    <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
+                      <FaLinkedinIn className="text-white" size={16} />
+                    </div>
+                  </a>
+                  <span className="text-xs text-white">LinkedinIn</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <a href="https://www.youtube.com/@solvesticcare">
+                    <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
+                      <FaSnapchatGhost className="text-white" size={16} />
+                    </div>
+                  </a>
+                  <span className="text-xs text-white">Snapchat</span>
+                </div>
               </div>
             </div>
 
@@ -95,12 +111,12 @@ export default function Footer() {
           </div>
 
           {/* Bottom divider + copyright */}
-         <div className="mt-8 pt-6 border-t border-white text-center">
-  <p className="text-xs text-white">
-    © 2026 Solvestic. All rights reserved.
-  </p>
+          <div className="mt-8 pt-6 border-t border-white text-center">
+            <p className="text-xs text-white">
+              © 2026 Solvestic. All rights reserved.
+            </p>
 
-  {/* <p className="mt-2 text-xs text-purple-300">
+            {/* <p className="mt-2 text-xs text-purple-300">
     Website Designed By{" "}
     <a
       href="https://inquirybazaar.com/"
@@ -112,7 +128,7 @@ export default function Footer() {
     </a>{" "}
     <span className="text-purple-400">B2B Marketplace</span>
   </p> */}
-</div>
+          </div>
         </div>
       </footer>
     </div>

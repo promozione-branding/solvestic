@@ -164,7 +164,7 @@ export default function FounderDiarySection() {
                         </p>
 
                         {/* Hide scrollbar */}
-                        <div className="scrollbar-hide flex gap-3 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
+                        <div className="scrollbar-hide flex gap-3 overflow-x-auto pb-1 flex-col lg:overflow-visible">
 
                             {FOUNDER_REELS.map((reel, index) => {
 

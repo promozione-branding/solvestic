@@ -9,6 +9,7 @@ import gsap from "gsap";
    COUNTDOWN DATE
 ========================================================= */
 import { Fredoka } from "next/font/google";
+import MobileStickyFooter from "./MobileStickyFooter";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -208,7 +209,7 @@ export default function Hero3() {
         BANNER
     ====================================================== */}
       <div
-        className="
+        className="sm:block hidden
         relative
         h-[520px]
         w-full
@@ -521,6 +522,52 @@ export default function Hero3() {
           </div>
         </div>
       </div>
+
+      <div className="relative block h-[400px] w-full overflow-hidden sm:hidden">
+        {/* MOBILE BANNER IMAGE */}
+        <Image
+          src="/mobileBanner.png"
+          alt="For the skin-smart generation"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+
+        {/* CONTENT OVER IMAGE */}
+        {/* <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-10 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.2,
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="
+        max-w-[330px]
+        text-[3.2rem]
+        font-semibold
+        leading-[0.88]
+        tracking-[-0.04em]
+        text-black
+      "
+          >
+            For the
+            <br />
+            skin-smart
+            <br />
+            generation
+          </motion.h1>
+        </div> */}
+      </div>
+
+      <MobileStickyFooter
+        days={days}
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+      />
     </section >
   );
 }
