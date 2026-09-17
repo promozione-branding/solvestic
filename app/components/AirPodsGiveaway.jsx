@@ -447,13 +447,6 @@ export default function AirPodsGiveaway() {
             "
                                     />
 
-                                    <style jsx>{`
-            @media (min-width: 640px) {
-                div {
-                    /* keeps JSX styling isolated */
-                }
-            }
-        `}</style>
                                 </div>
 
                                 {/* ================= BOX BODY ================= */}
