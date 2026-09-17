@@ -1,286 +1,184 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
-import { Gift, Trophy, Music2, Radio, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+    Gift,
+    Sparkles,
+    Trophy,
+    Music2,
+    ArrowUpRight,
+} from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AirPodsGiveaway() {
-    const orders = 73;
-    const progress = (orders / 100) * 100;
-
     const sectionRef = useRef(null);
-    const visualRef = useRef(null);
+    const stageRef = useRef(null);
 
-    const boxRef = useRef(null);
-    const boxBodyRef = useRef(null);
+    const productRef = useRef(null);
+    const caseRef = useRef(null);
+
     const lidRef = useRef(null);
-    const ribbonVerticalRef = useRef(null);
-    const ribbonHorizontalRef = useRef(null);
+    const baseRef = useRef(null);
 
-    const insideRef = useRef(null);
     const glowRef = useRef(null);
-    const airpodsRef = useRef(null);
-    const airpodsGlowRef = useRef(null);
 
     const particleRefs = useRef([]);
 
+    const orders = 73;
+    const remaining = 100 - orders;
+
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            /*
-            =========================================================
-            INITIAL STATE
-            =========================================================
-            */
+            // Initial state
+            gsap.set(productRef.current, {
+                y: 120,
+                scale: 0.82,
+                opacity: 0,
+                rotation: -5,
+            });
 
-            gsap.set(boxRef.current, {
-                y: 0,
-                scale: 1,
-                transformPerspective: 1000,
+            gsap.set(caseRef.current, {
+                y: 20,
+                scale: 0.92,
             });
 
             gsap.set(lidRef.current, {
                 rotationX: 0,
                 y: 0,
-                z: 0,
                 transformOrigin: "50% 100%",
             });
 
-            gsap.set(insideRef.current, {
-                scale: 0.6,
-                opacity: 0,
+            gsap.set(baseRef.current, {
+                scaleY: 0.92,
             });
 
             gsap.set(glowRef.current, {
-                scale: 0.3,
                 opacity: 0,
-            });
-
-            gsap.set(airpodsRef.current, {
-                y: 150,
-                scale: 0.72,
-                opacity: 0,
-                rotation: -8,
-                transformPerspective: 1200,
-            });
-
-            gsap.set(airpodsGlowRef.current, {
-                scale: 0.4,
-                opacity: 0,
-            });
-
-            gsap.set(ribbonVerticalRef.current, {
-                opacity: 1,
-            });
-
-            gsap.set(ribbonHorizontalRef.current, {
-                opacity: 1,
+                scale: 0.5,
             });
 
             particleRefs.current.forEach((el) => {
                 if (!el) return;
 
                 gsap.set(el, {
-                    x: 0,
-                    y: 20,
-                    scale: 0,
                     opacity: 0,
-                    rotation: 0,
+                    scale: 0,
+                    x: 0,
+                    y: 0,
                 });
             });
 
-            /*
-            =========================================================
-            MAIN SCROLL TIMELINE
-            =========================================================
-            */
-
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: visualRef.current,
-                    start: "top 72%",
-                    end: "center 25%",
-                    scrub: 1.2,
+                    trigger: stageRef.current,
+                    start: "top 78%",
+                    end: "center 30%",
+                    scrub: 1,
                 },
             });
 
-            // Small anticipation
+            // Small entrance
             tl.to(
-                boxRef.current,
+                caseRef.current,
                 {
-                    y: 8,
-                    scale: 0.985,
-                    duration: 0.2,
+                    y: 5,
+                    scale: 1,
+                    duration: 0.25,
                     ease: "power2.out",
                 },
                 0
             );
 
-            // Slight squash
-            tl.to(
-                boxBodyRef.current,
-                {
-                    scaleY: 0.96,
-                    duration: 0.2,
-                    ease: "power2.out",
-                },
-                0
-            );
-
-            // Remove center ribbons as lid starts opening
-            tl.to(
-                ribbonVerticalRef.current,
-                {
-                    opacity: 0,
-                    duration: 0.2,
-                },
-                0.12
-            );
-
-            tl.to(
-                ribbonHorizontalRef.current,
-                {
-                    opacity: 0,
-                    duration: 0.2,
-                },
-                0.12
-            );
-
-            /*
-            ---------------------------------------------------------
-            LID OPEN
-            ---------------------------------------------------------
-            */
-
+            // Lid opens
             tl.to(
                 lidRef.current,
                 {
-                    rotationX: -105,
-                    y: -34,
-                    z: 20,
-                    duration: 0.9,
+                    rotationX: -112,
+                    y: -18,
+                    duration: 0.75,
                     ease: "power3.out",
                 },
-                0.18
+                0.15
             );
 
-            /*
-            ---------------------------------------------------------
-            INSIDE REVEAL
-            ---------------------------------------------------------
-            */
-
+            // Base opens slightly
             tl.to(
-                insideRef.current,
+                baseRef.current,
                 {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.45,
+                    scaleY: 1,
+                    duration: 0.4,
                     ease: "power2.out",
                 },
-                0.32
+                0.2
             );
 
-            /*
-            ---------------------------------------------------------
-            LIGHT / GLOW
-            ---------------------------------------------------------
-            */
-
+            // Glow
             tl.to(
                 glowRef.current,
                 {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: "power2.out",
-                },
-                0.35
-            );
-
-            tl.to(
-                airpodsGlowRef.current,
-                {
-                    scale: 1,
                     opacity: 0.8,
-                    duration: 0.7,
+                    scale: 1,
+                    duration: 0.5,
                     ease: "power2.out",
                 },
-                0.38
+                0.3
             );
 
-            /*
-            ---------------------------------------------------------
-            AIRPODS EMERGE
-            ---------------------------------------------------------
-            */
-
+            // AirPods rise
             tl.to(
-                airpodsRef.current,
+                productRef.current,
                 {
-                    y: -35,
+                    y: -42,
                     scale: 1,
                     opacity: 1,
                     rotation: 0,
                     duration: 1,
                     ease: "back.out(1.35)",
                 },
-                0.4
+                0.35
             );
 
-            /*
-            ---------------------------------------------------------
-            AIRPODS FINAL MICRO MOVEMENT
-            ---------------------------------------------------------
-            */
-
+            // Slight lift
             tl.to(
-                airpodsRef.current,
+                productRef.current,
                 {
-                    y: -48,
+                    y: -54,
                     duration: 0.35,
                     ease: "power2.out",
                 },
-                0.95
+                1.05
             );
 
-            /*
-            ---------------------------------------------------------
-            PARTICLE BURST
-            ---------------------------------------------------------
-            */
+            // Particles
+            const positions = [
+                [-100, -75],
+                [-65, -105],
+                [-20, -125],
+                [30, -118],
+                [72, -90],
+                [108, -45],
+            ];
 
             particleRefs.current.forEach((el, index) => {
                 if (!el) return;
 
-                const directions = [
-                    { x: -105, y: -95, r: -35 },
-                    { x: -55, y: -125, r: 30 },
-                    { x: 0, y: -145, r: 0 },
-                    { x: 58, y: -120, r: -25 },
-                    { x: 110, y: -85, r: 35 },
-                    { x: -130, y: -35, r: -45 },
-                    { x: 125, y: -30, r: 45 },
-                    { x: 72, y: -155, r: 20 },
-                ];
-
-                const p = directions[index];
+                const [x, y] = positions[index];
 
                 tl.to(
                     el,
                     {
-                        x: p.x,
-                        y: p.y,
-                        scale: index % 2 === 0 ? 1 : 0.7,
+                        x,
+                        y,
+                        scale: 1,
                         opacity: 1,
-                        rotation: p.r,
-                        duration: 0.55,
-                        ease: "power3.out",
+                        duration: 0.4,
+                        ease: "back.out(1.8)",
                     },
-                    0.62 + index * 0.025
+                    0.7 + index * 0.05
                 );
 
                 tl.to(
@@ -288,9 +186,9 @@ export default function AirPodsGiveaway() {
                     {
                         opacity: 0,
                         scale: 0.2,
-                        duration: 0.35,
+                        duration: 0.3,
                     },
-                    1.1 + index * 0.02
+                    1.15 + index * 0.04
                 );
             });
         }, sectionRef);
@@ -301,786 +199,543 @@ export default function AirPodsGiveaway() {
     return (
         <section
             ref={sectionRef}
-            className="relative overflow-hidden bg-[#faf8ff] py-20 sm:py-28"
+            className="relative overflow-hidden bg-[#fbfafc] py-10 sm:py-12 lg:py-14"
         >
-            {/* =====================================================
-                BACKGROUND DECORATION
-            ===================================================== */}
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
-            <div className="pointer-events-none absolute inset-0">
-                <div
-                    className="
-                        absolute
-                        left-[10%]
-                        top-[15%]
-                        h-[350px]
-                        w-[350px]
-                        rounded-full
-                        bg-[#c084fc]/10
-                        blur-[100px]
-                    "
-                />
+                {/* ================= HEADER ================= */}
 
-                <div
-                    className="
-                        absolute
-                        bottom-[5%]
-                        right-[5%]
-                        h-[400px]
-                        w-[400px]
-                        rounded-full
-                        bg-[#f472b6]/10
-                        blur-[120px]
-                    "
-                />
-            </div>
+                <div className="mb-6 flex flex-col gap-3 sm:mb-7 sm:flex-row sm:items-end sm:justify-between">
 
-            <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+                    <div className="max-w-xl">
+                        <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#e8e0ed] bg-white px-3 py-1.5">
+                            <Sparkles
+                                size={11}
+                                className="text-[#9b72b3]"
+                            />
 
-                {/* =================================================
-                    HEADER
-                ================================================= */}
+                            <span className="text-[8px] font-black uppercase tracking-[0.18em] text-[#80658e]">
+                                Solvestic First Drop
+                            </span>
+                        </div>
 
-                <div className="mx-auto mb-12 max-w-3xl text-center">
-
-                    <div
-                        className="
-                            mb-5
-                            inline-flex
-                            items-center
-                            gap-2
-                            rounded-full
-                            border
-                            border-[#e9ddff]
-                            bg-white/80
-                            px-4
-                            py-2
-                            text-[10px]
-                            font-black
-                            tracking-[0.18em]
-                            text-[#7442c8]
-                            shadow-[0_8px_30px_rgba(100,50,180,0.08)]
-                            backdrop-blur-xl
-                        "
-                    >
-                        <Gift size={14} />
-                        SOLVESTIC FIRST DROP
+                        <h2 className="text-3xl font-black leading-[0.98] tracking-[-0.055em] text-[#211d24] sm:text-4xl lg:text-[46px]">
+                            Your next order
+                            <span className="block text-[#8e68a5]">
+                                could be a little extra.
+                            </span>
+                        </h2>
                     </div>
 
-                    <h2
-                        className="
-                            text-4xl
-                            font-black
-                            leading-[1.02]
-                            tracking-[-0.04em]
-                            text-[#18151f]
-                            sm:text-5xl
-                            lg:text-6xl
-                        "
-                    >
-                        Your order could come
-                        <span className="block bg-gradient-to-r from-[#713fc4] to-[#e54891] bg-clip-text text-transparent">
-                            with AirPods.
-                        </span>
-                    </h2>
-
-                    <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-[#756d80] sm:text-base">
-                        Spend ₹1,999/- on the Solvestic First Drop
-                        for a chance to win.
+                    <p className="max-w-[280px] text-[11px] leading-5 text-[#8c838f] sm:text-right">
+                        Every 100 eligible orders creates another
+                        chance to take home Apple AirPods.
                     </p>
                 </div>
 
-                {/* =================================================
-                    MAIN CARD
-                ================================================= */}
+                {/* ================= MAIN CARD ================= */}
 
-                <div
-                    className="
-                        overflow-hidden
-                        rounded-[36px]
-                        border
-                        border-white
-                        bg-white/80
-                        shadow-[0_30px_100px_rgba(70,35,120,0.12)]
-                        backdrop-blur-xl
-                        lg:grid
-                        lg:grid-cols-[1.05fr_0.95fr]
-                    "
-                >
+                <div className="overflow-hidden rounded-[28px] border border-[#eee9f1] bg-white shadow-[0_18px_55px_rgba(55,35,65,0.07)]">
 
-                    {/* =================================================
-                        VISUAL
-                    ================================================= */}
+                    <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
 
-                    <div
-                        ref={visualRef}
-                        className="
-                            relative
-                            flex
-                            min-h-[520px]
-                            items-center
-                            justify-center
-                            overflow-hidden
-                            bg-gradient-to-br
-                            from-[#eee5ff]
-                            via-[#f7f1ff]
-                            to-[#fff1f7]
-                            sm:min-h-[620px]
-                        "
-                    >
-
-                        {/* Radial light */}
-                        <div
-                            ref={glowRef}
-                            className="
-                                pointer-events-none
-                                absolute
-                                left-1/2
-                                top-[48%]
-                                z-[2]
-                                h-[280px]
-                                w-[280px]
-                                -translate-x-1/2
-                                -translate-y-1/2
-                                rounded-full
-                                bg-[radial-gradient(circle,rgba(255,255,255,0.95)_0%,rgba(202,163,255,0.35)_40%,transparent_72%)]
-                                blur-2xl
-                            "
-                        />
-
-                        {/* Floor shadow */}
-                        <div
-                            className="
-                                absolute
-                                bottom-[65px]
-                                left-1/2
-                                h-[35px]
-                                w-[300px]
-                                -translate-x-1/2
-                                rounded-[50%]
-                                bg-[#5c397d]/15
-                                blur-2xl
-                            "
-                        />
-
-                        {/* =================================================
-                            PARTICLES
-                        ================================================= */}
-
-                        {[
-                            "✦",
-                            "•",
-                            "✧",
-                            "◆",
-                            "✦",
-                            "•",
-                            "✧",
-                            "✦",
-                        ].map((symbol, index) => (
-                            <span
-                                key={index}
-                                ref={(el) => {
-                                    particleRefs.current[index] = el;
-                                }}
-                                className="
-                                    absolute
-                                    left-1/2
-                                    top-[55%]
-                                    z-[40]
-                                    text-xl
-                                    font-bold
-                                    text-[#884dcc]
-                                "
-                            >
-                                {symbol}
-                            </span>
-                        ))}
-
-                        {/* =================================================
-                            AIRPODS
-                        ================================================= */}
+                        {/* ================= VISUAL ================= */}
 
                         <div
-                            ref={airpodsRef}
-                            className="
-                                absolute
-                                left-1/2
-                                top-[100px]
-                                z-[25]
-                                -translate-x-1/2
-                                will-change-transform
-                            "
+                            ref={stageRef}
+                            className="relative min-h-[390px] overflow-hidden bg-[#f8f5fa] sm:min-h-[430px] lg:min-h-[470px]"
                         >
+                            {/* Decorative circles */}
+                            <div className="absolute left-8 top-8 h-2 w-2 rounded-full bg-[#d8bfdc]" />
+                            <div className="absolute right-12 top-16 h-1.5 w-1.5 rounded-full bg-[#e7bccc]" />
+                            <div className="absolute bottom-16 left-12 h-1.5 w-1.5 rounded-full bg-[#c9b2d4]" />
+
+                            {/* Main soft light */}
                             <div
-                                ref={airpodsGlowRef}
-                                className="
-                                    absolute
-                                    left-1/2
-                                    top-1/2
-                                    h-[280px]
-                                    w-[280px]
-                                    -translate-x-1/2
-                                    -translate-y-1/2
-                                    rounded-full
-                                    bg-white/80
-                                    blur-[55px]
-                                "
+                                ref={glowRef}
+                                className="absolute left-1/2 top-[43%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-0 blur-[55px]"
                             />
 
-                            <motion.div
-                                animate={{
-                                    y: [0, -8, 0],
-                                    rotate: [0, 0.5, 0],
-                                }}
-                                transition={{
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
+                            {/* Particles */}
+                            {["✦", "✧", "•", "✦", "✧", "•"].map(
+                                (item, index) => (
+                                    <span
+                                        key={index}
+                                        ref={(el) => {
+                                            particleRefs.current[index] = el;
+                                        }}
+                                        className="absolute left-1/2 top-[45%] z-30 text-lg text-[#a477b8]"
+                                    >
+                                        {item}
+                                    </span>
+                                )
+                            )}
+
+                            {/* ================= PRODUCT ================= */}
+
+                            <div
+                                ref={productRef}
+                                className="absolute left-1/2 top-[65px] z-20 -translate-x-1/2"
+                            >
+                                <motion.div
+                                    animate={{
+                                        y: [0, -5, 0],
+                                        rotateZ: [0, 0.5, 0],
+                                    }}
+                                    transition={{
+                                        duration: 4.5,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="relative"
+                                >
+                                    <img
+                                        src="/ChatGPT Image Sep 17, 2026, 04_30_32 PM.png"
+                                        alt="Solvestic AirPods"
+                                        className="w-[260px] object-contain drop-shadow-[0_24px_30px_rgba(65,45,75,0.17)] sm:w-[320px] lg:w-[200px]"
+                                    />
+
+                                    {/* Product label */}
+                                    {/* <div className="absolute -right-2 top-3 rounded-full border border-[#e9e1ed] bg-white px-2.5 py-1.5 shadow-[0_8px_20px_rgba(50,30,60,0.08)] sm:-right-8">
+                                        <span className="text-[7px] font-black uppercase tracking-[0.12em] text-[#765483]">
+                                            AirPods
+                                        </span>
+                                    </div> */}
+                                </motion.div>
+                            </div>
+
+                            {/* ================= PREMIUM BOX ================= */}
+
+                            {/* ================= PREMIUM AIRPODS BOX ================= */}
+
+                            <div
+                                ref={caseRef}
+                                className="
+        absolute
+        bottom-[32px]
+        left-1/2
+        z-40
+        h-[150px]
+        w-[225px]
+        -translate-x-1/2
+        sm:h-[175px]
+        sm:w-[275px]
+    "
+                                style={{
+                                    perspective: "1000px",
                                 }}
                             >
-                                <img
-                                    src="/ChatGPT Image Sep 17, 2026, 04_30_32 PM.png"
-                                    alt="Solvestic AirPods"
+                                {/* ================= INNER CAVITY ================= */}
+
+                                <div
                                     className="
-                                        relative
-                                        z-10
-                                        w-[280px]
-                                        object-contain
-                                        drop-shadow-[0_35px_45px_rgba(58,35,90,0.28)]
-                                        sm:w-[350px]
-                                        lg:w-[390px]
-                                    "
+            absolute
+            left-1/2
+            top-[12px]
+            z-10
+            h-[72px]
+            w-[185px]
+            -translate-x-1/2
+            rounded-[28px]
+            border
+            border-[#ded8e2]
+            bg-[#eeeaf1]
+            shadow-[inset_0_8px_18px_rgba(60,45,70,0.08)]
+            sm:h-[84px]
+            sm:w-[225px]
+        "
+                                >
+                                    {/* Inner cushion */}
+
+                                    <div
+                                        className="
+                absolute
+                left-1/2
+                top-[8px]
+                h-[52px]
+                w-[145px]
+                -translate-x-1/2
+                rounded-[24px]
+                bg-[#f8f6f9]
+                shadow-[inset_0_4px_12px_rgba(60,45,70,0.05)]
+                sm:h-[62px]
+                sm:w-[180px]
+            "
+                                    />
+                                </div>
+
+                                {/* ================= HINGED LID ================= */}
+
+                                <div
+                                    ref={lidRef}
+                                    className="
+            absolute
+            left-1/2
+            top-0
+            z-50
+            h-[52px]
+            w-[225px]
+            -translate-x-1/2
+            rounded-[17px]
+            border
+            border-[#dcd5e0]
+            bg-[#ffffff]
+            shadow-[0_12px_25px_rgba(50,40,60,0.13)]
+        "
+                                    style={{
+                                        transformOrigin: "50% 100%",
+                                        transformStyle: "preserve-3d",
+                                    }}
+                                >
+                                    {/* Lid inset */}
+
+                                    <div
+                                        className="
+                absolute
+                inset-[5px]
+                rounded-[13px]
+                border
+                border-[#f0edf2]
+            "
+                                    />
+
+                                    {/* Small premium logo */}
+
+                                    <div
+                                        className="
+                absolute
+                left-1/2
+                top-1/2
+                -translate-x-1/2
+                -translate-y-1/2
+                text-[8px]
+                font-bold
+                tracking-[0.28em]
+                text-[#76647d]
+            "
+                                    >
+                                        SOLVESTIC
+                                    </div>
+
+                                    {/* Tiny center detail */}
+
+                                    <div
+                                        className="
+                absolute
+                bottom-[6px]
+                left-1/2
+                h-[2px]
+                w-[28px]
+                -translate-x-1/2
+                rounded-full
+                bg-[#d8c7dc]
+            "
+                                    />
+
+                                    {/* Hinge */}
+
+                                    <div
+                                        className="
+                absolute
+                bottom-[-3px]
+                left-1/2
+                h-[6px]
+                w-[70px]
+                -translate-x-1/2
+                rounded-full
+                bg-[#d8d0da]
+            "
+                                    />
+
+                                    <style jsx>{`
+            @media (min-width: 640px) {
+                div {
+                    /* keeps JSX styling isolated */
+                }
+            }
+        `}</style>
+                                </div>
+
+                                {/* ================= BOX BODY ================= */}
+
+                                <div
+                                    ref={baseRef}
+                                    className="
+            absolute
+            bottom-0
+            left-1/2
+            z-30
+            h-[105px]
+            w-[225px]
+            -translate-x-1/2
+            overflow-hidden
+            rounded-[20px]
+            border
+            border-[#dcd5e0]
+            bg-[#faf9fb]
+            shadow-[0_20px_35px_rgba(55,40,65,0.14)]
+            sm:h-[125px]
+            sm:w-[275px]
+        "
+                                >
+                                    {/* Front panel */}
+
+                                    <div
+                                        className="
+                absolute
+                inset-x-0
+                bottom-0
+                h-[72%]
+                rounded-t-[12px]
+                bg-[#ffffff]
+                sm:h-[75%]
+            "
+                                    />
+
+                                    {/* Recessed top edge */}
+
+                                    <div
+                                        className="
+                absolute
+                left-1/2
+                top-0
+                h-[22px]
+                w-[88%]
+                -translate-x-1/2
+                rounded-b-[15px]
+                border-x
+                border-b
+                border-[#e1dbe4]
+                bg-[#f1edf3]
+            "
+                                    />
+
+                                    {/* Front logo */}
+
+                                    <div
+                                        className="
+                absolute
+                left-1/2
+                top-[58%]
+                -translate-x-1/2
+                -translate-y-1/2
+                whitespace-nowrap
+                text-[16px]
+                font-black
+                tracking-[-0.04em]
+                text-[#76617e]
+                sm:text-[19px]
+            "
+                                    >
+                                        solvestic
+                                        <span className="text-[#d497ae]">.</span>
+                                    </div>
+
+                                    {/* Small product line */}
+
+                                    <div
+                                        className="
+                absolute
+                left-1/2
+                bottom-[15px]
+                -translate-x-1/2
+                whitespace-nowrap
+                text-[6px]
+                font-bold
+                uppercase
+                tracking-[0.25em]
+                text-[#aaa1ad]
+            "
+                                    >
+                                        FIRST DROP
+                                    </div>
+
+                                    {/* Corner details */}
+
+                                    <div className="absolute left-3 top-3 h-1 w-1 rounded-full bg-[#d8cbdc]" />
+                                    <div className="absolute right-3 top-3 h-1 w-1 rounded-full bg-[#d8cbdc]" />
+                                </div>
+
+                                {/* ================= GROUND SHADOW ================= */}
+
+                                <div
+                                    className="
+            absolute
+            bottom-[-12px]
+            left-1/2
+            h-[16px]
+            w-[78%]
+            -translate-x-1/2
+            rounded-full
+            bg-[#76617e]/10
+            blur-[9px]
+        "
                                 />
-                            </motion.div>
+                            </div>
+
+                            {/* Bottom badge */}
+                            <div className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full border border-[#e8dfe9] bg-white px-3 py-1.5 shadow-[0_5px_18px_rgba(60,35,70,0.06)]">
+                                <Gift size={10} className="text-[#8c639c]" />
+
+                                <span className="text-[7px] font-black uppercase tracking-[0.15em] text-[#795d84]">
+                                    Every 100 Orders
+                                </span>
+                            </div>
                         </div>
 
-                        {/* =================================================
-                            GIFT BOX
-                        ================================================= */}
+                        {/* ================= CONTENT ================= */}
 
-                        <div
-                            ref={boxRef}
-                            className="
-                                absolute
-                                bottom-[65px]
-                                left-1/2
-                                z-[30]
-                                w-[270px]
-                                -translate-x-1/2
-                                sm:w-[320px]
-                            "
-                            style={{
-                                perspective: "1000px",
-                            }}
-                        >
+                        <div className="flex flex-col justify-center p-5 sm:p-7 lg:p-8 xl:p-10">
 
-                            {/* ==============================
-                                OPENING / INNER
-                            ============================== */}
+                            {/* Prize */}
 
-                            <div
-                                ref={insideRef}
-                                className="
-                                    absolute
-                                    left-1/2
-                                    top-[-8px]
-                                    z-[1]
-                                    h-[100px]
-                                    w-[235px]
-                                    -translate-x-1/2
-                                    rounded-[50%]
-                                    bg-[#241335]
-                                    shadow-[inset_0_12px_30px_rgba(0,0,0,0.6)]
-                                "
-                            >
-                                <div
-                                    className="
-                                        absolute
-                                        inset-[10px]
-                                        rounded-[50%]
-                                        bg-gradient-to-br
-                                        from-[#5e2a8e]
-                                        via-[#27143b]
-                                        to-[#120b1b]
-                                    "
-                                />
-                            </div>
+                            <div className="mb-5 flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f4edf7] text-[#825b96]">
+                                    <Trophy size={17} />
+                                </div>
 
-                            {/* ==============================
-                                LID
-                            ============================== */}
+                                <div>
+                                    <p className="text-[8px] font-black uppercase tracking-[0.16em] text-[#aaa0ad]">
+                                        Featured prize
+                                    </p>
 
-                            <div
-                                ref={lidRef}
-                                className="
-                                    absolute
-                                    left-1/2
-                                    top-0
-                                    z-[50]
-                                    h-[76px]
-                                    w-[286px]
-                                    -translate-x-1/2
-                                    rounded-[18px]
-                                    border
-                                    border-white/20
-                                    bg-gradient-to-br
-                                    from-[#2e2140]
-                                    via-[#21162f]
-                                    to-[#140d1e]
-                                    shadow-[0_18px_35px_rgba(30,15,45,0.3)]
-                                    will-change-transform
-                                "
-                            >
-                                {/* Lid highlight */}
-                                <div
-                                    className="
-                                        absolute
-                                        inset-[1px]
-                                        rounded-[17px]
-                                        border
-                                        border-white/10
-                                        bg-gradient-to-br
-                                        from-white/10
-                                        to-transparent
-                                    "
-                                />
+                                    <h3 className="text-xl font-black tracking-[-0.03em] text-[#28222b]">
+                                        Apple AirPods
+                                    </h3>
+                                </div>
 
-                                {/* Ribbon */}
-                                <div
-                                    ref={ribbonVerticalRef}
-                                    className="
-                                        absolute
-                                        left-1/2
-                                        top-0
-                                        h-full
-                                        w-[42px]
-                                        -translate-x-1/2
-                                        bg-gradient-to-r
-                                        from-[#d946ef]
-                                        via-[#f472b6]
-                                        to-[#d946ef]
-                                    "
-                                />
+                                <div className="ml-auto text-right">
+                                    <p className="text-base font-black text-[#805993]">
+                                        ₹14,900
+                                    </p>
 
-                                <div
-                                    ref={ribbonHorizontalRef}
-                                    className="
-                                        absolute
-                                        left-0
-                                        top-1/2
-                                        h-[18px]
-                                        w-full
-                                        -translate-y-1/2
-                                        bg-gradient-to-r
-                                        from-[#d946ef]
-                                        via-[#f472b6]
-                                        to-[#d946ef]
-                                    "
-                                />
-                            </div>
-
-                            {/* ==============================
-                                BOX BODY
-                            ============================== */}
-
-                            <div
-                                ref={boxBodyRef}
-                                className="
-                                    relative
-                                    z-[20]
-                                    mt-[38px]
-                                    h-[170px]
-                                    w-full
-                                    rounded-[22px]
-                                    border
-                                    border-white/10
-                                    bg-gradient-to-br
-                                    from-[#31213f]
-                                    via-[#21152e]
-                                    to-[#130b1d]
-                                    shadow-[0_30px_45px_rgba(40,20,60,0.35)]
-                                    will-change-transform
-                                "
-                            >
-                                {/* Front shine */}
-                                <div
-                                    className="
-                                        absolute
-                                        inset-x-0
-                                        bottom-0
-                                        h-[70%]
-                                        rounded-b-[22px]
-                                        bg-gradient-to-t
-                                        from-black/20
-                                        to-transparent
-                                    "
-                                />
-
-                                {/* Center ribbon */}
-                                <div
-                                    className="
-                                        absolute
-                                        left-1/2
-                                        top-0
-                                        h-full
-                                        w-[42px]
-                                        -translate-x-1/2
-                                        bg-gradient-to-r
-                                        from-[#d946ef]
-                                        via-[#f472b6]
-                                        to-[#d946ef]
-                                    "
-                                />
-
-                                {/* Logo */}
-                                <div
-                                    className="
-                                        absolute
-                                        left-1/2
-                                        top-1/2
-                                        z-10
-                                        -translate-x-1/2
-                                        -translate-y-1/2
-                                        whitespace-nowrap
-                                        text-[19px]
-                                        font-black
-                                        tracking-[-0.04em]
-                                        text-white
-                                    "
-                                >
-                                    solvestic<span className="text-[#f472b6]">.</span>
+                                    <p className="text-[8px] text-[#aaa0ad]">
+                                        Prize value
+                                    </p>
                                 </div>
                             </div>
 
-                            {/* ==============================
-                                BOTTOM SHADOW
-                            ============================== */}
+                            {/* Big campaign statement */}
 
-                            <div
-                                className="
-                                    absolute
-                                    bottom-[-12px]
-                                    left-1/2
-                                    h-[20px]
-                                    w-[90%]
-                                    -translate-x-1/2
-                                    rounded-full
-                                    bg-black/20
-                                    blur-xl
-                                "
-                            />
-                        </div>
-
-                        {/* =================================================
-                            SCROLL LABEL
-                        ================================================= */}
-
-                        <div
-                            className="
-                                absolute
-                                bottom-5
-                                right-5
-                                z-[60]
-                                hidden
-                                items-center
-                                gap-2
-                                rounded-full
-                                border
-                                border-white/70
-                                bg-white/70
-                                px-3
-                                py-2
-                                text-[9px]
-                                font-black
-                                uppercase
-                                tracking-widest
-                                text-[#6d4a91]
-                                shadow-lg
-                                backdrop-blur-xl
-                                sm:flex
-                            "
-                        >
-                            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#d946ef]" />
-                            Scroll to reveal
-                        </div>
-
-                    </div>
-
-                    {/* =================================================
-                        RIGHT CONTENT
-                    ================================================= */}
-
-                    <div className="p-7 sm:p-10 lg:p-12">
-
-                        {/* Prize */}
-
-                        <div className="mb-7 flex items-center gap-4">
-
-                            <div
-                                className="
-                                    flex
-                                    h-12
-                                    w-12
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-2xl
-                                    bg-gradient-to-br
-                                    from-[#eee3ff]
-                                    to-[#fce5f2]
-                                    text-[#7442c8]
-                                "
-                            >
-                                <Trophy size={21} />
-                            </div>
-
-                            <div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-[#9a90a5]">
-                                    The Prize
+                            <div className="mb-5">
+                                <p className="text-[9px] font-black uppercase tracking-[0.17em] text-[#a28fa9]">
+                                    The giveaway
                                 </p>
 
-                                <h3 className="text-xl font-black text-[#211c29]">
-                                    AirPods
+                                <h3 className="mt-1.5 text-[26px] font-black leading-[1.05] tracking-[-0.045em] text-[#241e27] sm:text-[30px]">
+                                    Every
+                                    <span className="text-[#8e67a4]">
+                                        {" "}100 orders
+                                    </span>
+                                    <br />
+                                    means another chance.
                                 </h3>
                             </div>
 
-                            <div className="ml-auto text-right">
-                                <p className="text-xl font-black text-[#7442c8]">
-                                    ₹14,900
-                                </p>
-                                <p className="text-[10px] text-[#9a90a5]">
-                                    Prize value
-                                </p>
+                            {/* Progress */}
+
+                            <div className="mb-5 rounded-2xl border border-[#eee7f0] bg-[#fcfbfd] p-4">
+
+                                <div className="mb-2.5 flex items-end justify-between">
+                                    <div>
+                                        <p className="text-[10px] font-black text-[#322b34]">
+                                            Current cycle
+                                        </p>
+
+                                        <p className="mt-0.5 text-[10px] text-[#9d929f]">
+                                            {remaining} eligible orders remaining
+                                        </p>
+                                    </div>
+
+                                    <span className="text-sm font-black text-[#805993]">
+                                        {orders}/100
+                                    </span>
+                                </div>
+
+                                <div className="h-2 overflow-hidden rounded-full bg-[#eee9f0]">
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        whileInView={{
+                                            width: `${orders}%`,
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                        }}
+                                        transition={{
+                                            duration: 1.1,
+                                            ease: "easeOut",
+                                        }}
+                                        className="h-full rounded-full bg-[#b995c8]"
+                                    />
+                                </div>
                             </div>
 
-                        </div>
+                            {/* Benefits */}
 
-                        {/* Apple Music */}
+                            <div className="mb-5 grid grid-cols-2 gap-2">
 
-                        <div
-                            className="
-                                mb-7
-                                flex
-                                items-center
-                                gap-4
-                                rounded-2xl
-                                border
-                                border-[#f0e7f8]
-                                bg-[#fcf9ff]
-                                p-4
-                            "
-                        >
-                            <Music2 size={21} className="text-[#e54891]" />
-
-                            <div>
-                                <p className="text-sm font-bold text-[#25202e]">
-                                    3 Months Apple Music Free
-                                </p>
-
-                                <p className="mt-1 text-xs text-[#8a7e94]">
-                                    Included with the giveaway prize
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Eligibility */}
-
-                        <div
-                            className="
-                                mb-7
-                                overflow-hidden
-                                rounded-[24px]
-                                bg-[#1d1627]
-                                p-6
-                                text-white
-                                shadow-[0_20px_40px_rgba(25,15,35,0.12)]
-                            "
-                        >
-                            <div className="flex items-end justify-between">
-
-                                <div>
-                                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/50">
-                                        Spend
+                                <div className="rounded-xl border border-[#eee7f0] bg-white p-3">
+                                    <p className="text-[8px] font-black uppercase tracking-[0.12em] text-[#aaa0ad]">
+                                        Eligible order
                                     </p>
 
-                                    <p className="mt-1 text-3xl font-black">
+                                    <p className="mt-1 text-sm font-black text-[#332b35]">
                                         ₹1,999/-
                                     </p>
                                 </div>
 
-                                <Sparkles
-                                    size={22}
-                                    className="mb-1 text-[#f472b6]"
-                                />
+                                <div className="rounded-xl border border-[#eee7f0] bg-white p-3">
+                                    <div className="flex items-center gap-2">
+                                        <Music2
+                                            size={13}
+                                            className="text-[#c17e9b]"
+                                        />
 
+                                        <p className="text-[9px] font-black text-[#332b35]">
+                                            Apple Music
+                                        </p>
+                                    </div>
+
+                                    <p className="mt-1 text-[8px] text-[#968b98]">
+                                        3 months free
+                                    </p>
+                                </div>
                             </div>
 
-                            <p className="mt-3 max-w-sm text-xs leading-5 text-white/55">
-                                on the Solvestic First Drop to become eligible
-                                for the giveaway.
-                            </p>
-                        </div>
+                            {/* Footer message */}
 
-                        {/* Progress */}
+                            <div className="flex items-center gap-3 rounded-xl border border-[#e9e1ec] bg-[#faf7fb] p-3.5">
 
-                        <div className="mb-7">
-
-                            <div className="mb-3 flex items-center justify-between">
+                                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-[#8c639d] shadow-sm">
+                                    <Sparkles size={14} />
+                                </div>
 
                                 <div>
-                                    <p className="text-sm font-black text-[#28222f]">
-                                        Current Batch
+                                    <p className="text-[10px] font-black text-[#332b35]">
+                                        The giveaway keeps going.
                                     </p>
 
-                                    <p className="mt-1 text-[11px] text-[#8b8094]">
-                                        1 winner selected for every 100 eligible orders
-                                    </p>
-                                </div>
-
-                                <div
-                                    className="
-                                        flex
-                                        items-center
-                                        gap-2
-                                        rounded-full
-                                        bg-red-50
-                                        px-3
-                                        py-1.5
-                                        text-[10px]
-                                        font-black
-                                        text-red-500
-                                    "
-                                >
-                                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-                                    LIVE
-                                </div>
-
-                            </div>
-
-                            <div className="h-2.5 overflow-hidden rounded-full bg-[#eee8f4]">
-
-                                <div
-                                    className="
-                                        h-full
-                                        rounded-full
-                                        bg-gradient-to-r
-                                        from-[#7442c8]
-                                        via-[#b04bd4]
-                                        to-[#ef5793]
-                                    "
-                                    style={{
-                                        width: `${progress}%`,
-                                    }}
-                                />
-
-                            </div>
-
-                            <div className="mt-2 flex justify-between text-[10px] font-semibold text-[#8a7e94]">
-                                <span>{orders} eligible orders</span>
-                                <span>100</span>
-                            </div>
-
-                        </div>
-
-                        {/* Steps */}
-
-                        <div className="mb-7 grid grid-cols-3 gap-2">
-
-                            {[
-                                ["01", "Place eligible order"],
-                                ["02", "Complete 100 orders"],
-                                ["03", "Live winner selection"],
-                            ].map(([number, text]) => (
-                                <div
-                                    key={number}
-                                    className="
-                                        rounded-2xl
-                                        border
-                                        border-[#eee8f5]
-                                        bg-[#fbf9fd]
-                                        p-3.5
-                                    "
-                                >
-                                    <p className="mb-1 text-[10px] font-black text-[#7442c8]">
-                                        {number}
-                                    </p>
-
-                                    <p className="text-[11px] font-semibold leading-4 text-[#41394b]">
-                                        {text}
+                                    <p className="mt-0.5 text-[10px] leading-4 text-[#948996]">
+                                        Once a cycle reaches 100 eligible orders,
+                                        another winner is selected.
                                     </p>
                                 </div>
-                            ))}
 
-                        </div>
-
-                        {/* Live Selection */}
-
-                        <div
-                            className="
-                                flex
-                                items-center
-                                gap-3
-                                rounded-2xl
-                                border
-                                border-[#e8dff1]
-                                bg-white
-                                p-4
-                            "
-                        >
-
-                            <div
-                                className="
-                                    relative
-                                    flex
-                                    h-10
-                                    w-10
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-[#f1eaff]
-                                    text-[#7442c8]
-                                "
-                            >
-                                <Radio size={18} />
-
-                                <span
-                                    className="
-                                        absolute
-                                        right-1
-                                        top-1
-                                        h-2
-                                        w-2
-                                        animate-pulse
-                                        rounded-full
-                                        bg-red-500
-                                    "
+                                <ArrowUpRight
+                                    size={14}
+                                    className="ml-auto shrink-0 text-[#9b77a9]"
                                 />
                             </div>
 
-                            <div>
-                                <p className="text-xs font-black text-[#27212e]">
-                                    Automated Live Winner Selection
-                                </p>
-
-                                <p className="mt-1 text-[10px] text-[#8b8094]">
-                                    Transparent selection process
-                                </p>
-                            </div>
-
-                            <ShieldCheck
-                                size={18}
-                                className="ml-auto text-[#7442c8]"
-                            />
-
                         </div>
-
-                        <p className="mt-5 text-center text-[10px] text-[#988da2]">
-                            Your order could be the one. &nbsp; Terms & Conditions apply.
-                        </p>
-
                     </div>
                 </div>
+
+                {/* Tiny disclaimer */}
+
+                <p className="mt-3 text-center text-[10px] text-[#aaa1aa]">
+                    Your order could be the one. Terms & Conditions apply.
+                </p>
             </div>
         </section>
     );
