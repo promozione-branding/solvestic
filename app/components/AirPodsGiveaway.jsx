@@ -1,13 +1,7 @@
 "use client";
 
-import React, { useLayoutEffect, useRef, useState } from "react";
-import {
-    Gift,
-    Trophy,
-    Music2,
-    Radio,
-    ShieldCheck,
-} from "lucide-react";
+import React, { useLayoutEffect, useRef } from "react";
+import { Gift, Trophy, Music2, Radio, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,77 +9,101 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AirPodsGiveaway() {
-    const [orders] = useState(73);
-
+    const orders = 73;
     const progress = (orders / 100) * 100;
 
+    const sectionRef = useRef(null);
     const visualRef = useRef(null);
+
     const boxRef = useRef(null);
-
+    const boxBodyRef = useRef(null);
     const lidRef = useRef(null);
-    const airpodsRef = useRef(null);
-    const glowRef = useRef(null);
-    // const insideRef = useRef(null);
+    const ribbonVerticalRef = useRef(null);
+    const ribbonHorizontalRef = useRef(null);
 
-    const sparkleRefs = useRef([]);
+    const insideRef = useRef(null);
+    const glowRef = useRef(null);
+    const airpodsRef = useRef(null);
+    const airpodsGlowRef = useRef(null);
+
+    const particleRefs = useRef([]);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             /*
-            =====================================================
-            INITIAL CLOSED STATE
-            =====================================================
+            =========================================================
+            INITIAL STATE
+            =========================================================
             */
 
-            // Lid closed
+            gsap.set(boxRef.current, {
+                y: 0,
+                scale: 1,
+                transformPerspective: 1000,
+            });
+
             gsap.set(lidRef.current, {
                 rotationX: 0,
                 y: 0,
                 z: 0,
-                transformOrigin: "center bottom",
+                transformOrigin: "50% 100%",
             });
 
-            // AirPods hidden inside box
+            gsap.set(insideRef.current, {
+                scale: 0.6,
+                opacity: 0,
+            });
+
+            gsap.set(glowRef.current, {
+                scale: 0.3,
+                opacity: 0,
+            });
+
             gsap.set(airpodsRef.current, {
-                y: 105,
+                y: 150,
                 scale: 0.72,
                 opacity: 0,
-                rotate: -8,
+                rotation: -8,
+                transformPerspective: 1200,
             });
 
-            // Inner glow hidden
-            gsap.set(glowRef.current, {
+            gsap.set(airpodsGlowRef.current, {
+                scale: 0.4,
                 opacity: 0,
-                scale: 0.35,
             });
 
-            // Dark inside hidden
-            // gsap.set(insideRef.current, {
-            //     opacity: 0,
-            // });
+            gsap.set(ribbonVerticalRef.current, {
+                opacity: 1,
+            });
 
-            // Sparkles hidden
-            sparkleRefs.current.forEach((el) => {
+            gsap.set(ribbonHorizontalRef.current, {
+                opacity: 1,
+            });
+
+            particleRefs.current.forEach((el) => {
                 if (!el) return;
 
                 gsap.set(el, {
-                    opacity: 0,
+                    x: 0,
+                    y: 20,
                     scale: 0,
+                    opacity: 0,
+                    rotation: 0,
                 });
             });
 
             /*
-            =====================================================
-            SCROLL ANIMATION
-            =====================================================
+            =========================================================
+            MAIN SCROLL TIMELINE
+            =========================================================
             */
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: visualRef.current,
-                    start: "top 78%",
-                    end: "center 30%",
-                    scrub: 1.1,
+                    start: "top 72%",
+                    end: "center 25%",
+                    scrub: 1.2,
                 },
             });
 
@@ -93,165 +111,305 @@ export default function AirPodsGiveaway() {
             tl.to(
                 boxRef.current,
                 {
-                    y: 4,
-                    duration: 0.12,
+                    y: 8,
+                    scale: 0.985,
+                    duration: 0.2,
                     ease: "power2.out",
                 },
                 0
             );
 
-            // Open gift lid
+            // Slight squash
+            tl.to(
+                boxBodyRef.current,
+                {
+                    scaleY: 0.96,
+                    duration: 0.2,
+                    ease: "power2.out",
+                },
+                0
+            );
+
+            // Remove center ribbons as lid starts opening
+            tl.to(
+                ribbonVerticalRef.current,
+                {
+                    opacity: 0,
+                    duration: 0.2,
+                },
+                0.12
+            );
+
+            tl.to(
+                ribbonHorizontalRef.current,
+                {
+                    opacity: 0,
+                    duration: 0.2,
+                },
+                0.12
+            );
+
+            /*
+            ---------------------------------------------------------
+            LID OPEN
+            ---------------------------------------------------------
+            */
+
             tl.to(
                 lidRef.current,
                 {
-                    rotationX: -72,
+                    rotationX: -105,
                     y: -34,
-                    z: 22,
-                    duration: 0.7,
+                    z: 20,
+                    duration: 0.9,
                     ease: "power3.out",
                 },
-                0.08
+                0.18
             );
 
-            // Reveal inside
-            // tl.to(
-            //     insideRef.current,
-            //     {
-            //         opacity: 1,
-            //         duration: 0.3,
-            //         ease: "power2.out",
-            //     },
-            //     0.20
-            // );
+            /*
+            ---------------------------------------------------------
+            INSIDE REVEAL
+            ---------------------------------------------------------
+            */
 
-            // Glow
             tl.to(
-                glowRef.current,
+                insideRef.current,
                 {
-                    opacity: 1,
                     scale: 1,
-                    duration: 0.5,
+                    opacity: 1,
+                    duration: 0.45,
                     ease: "power2.out",
-                },
-                0.25
-            );
-
-            // AirPods rise
-            tl.to(
-                airpodsRef.current,
-                {
-                    y: -18,
-                    scale: 1,
-                    opacity: 1,
-                    rotate: 0,
-                    duration: 0.9,
-                    ease: "back.out(1.5)",
                 },
                 0.32
             );
 
-            // Sparkles
-            sparkleRefs.current.forEach((el, index) => {
+            /*
+            ---------------------------------------------------------
+            LIGHT / GLOW
+            ---------------------------------------------------------
+            */
+
+            tl.to(
+                glowRef.current,
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                },
+                0.35
+            );
+
+            tl.to(
+                airpodsGlowRef.current,
+                {
+                    scale: 1,
+                    opacity: 0.8,
+                    duration: 0.7,
+                    ease: "power2.out",
+                },
+                0.38
+            );
+
+            /*
+            ---------------------------------------------------------
+            AIRPODS EMERGE
+            ---------------------------------------------------------
+            */
+
+            tl.to(
+                airpodsRef.current,
+                {
+                    y: -35,
+                    scale: 1,
+                    opacity: 1,
+                    rotation: 0,
+                    duration: 1,
+                    ease: "back.out(1.35)",
+                },
+                0.4
+            );
+
+            /*
+            ---------------------------------------------------------
+            AIRPODS FINAL MICRO MOVEMENT
+            ---------------------------------------------------------
+            */
+
+            tl.to(
+                airpodsRef.current,
+                {
+                    y: -48,
+                    duration: 0.35,
+                    ease: "power2.out",
+                },
+                0.95
+            );
+
+            /*
+            ---------------------------------------------------------
+            PARTICLE BURST
+            ---------------------------------------------------------
+            */
+
+            particleRefs.current.forEach((el, index) => {
                 if (!el) return;
+
+                const directions = [
+                    { x: -105, y: -95, r: -35 },
+                    { x: -55, y: -125, r: 30 },
+                    { x: 0, y: -145, r: 0 },
+                    { x: 58, y: -120, r: -25 },
+                    { x: 110, y: -85, r: 35 },
+                    { x: -130, y: -35, r: -45 },
+                    { x: 125, y: -30, r: 45 },
+                    { x: 72, y: -155, r: 20 },
+                ];
+
+                const p = directions[index];
 
                 tl.to(
                     el,
                     {
+                        x: p.x,
+                        y: p.y,
+                        scale: index % 2 === 0 ? 1 : 0.7,
                         opacity: 1,
-                        scale: 1,
-                        duration: 0.3,
-                        ease: "back.out(2)",
+                        rotation: p.r,
+                        duration: 0.55,
+                        ease: "power3.out",
                     },
-                    0.58 + index * 0.07
+                    0.62 + index * 0.025
+                );
+
+                tl.to(
+                    el,
+                    {
+                        opacity: 0,
+                        scale: 0.2,
+                        duration: 0.35,
+                    },
+                    1.1 + index * 0.02
                 );
             });
-        }, visualRef);
+        }, sectionRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section className="relative overflow-hidden bg-[#FAF8FF] py-12 sm:py-16">
+        <section
+            ref={sectionRef}
+            className="relative overflow-hidden bg-[#faf8ff] py-20 sm:py-28"
+        >
+            {/* =====================================================
+                BACKGROUND DECORATION
+            ===================================================== */}
 
-            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="pointer-events-none absolute inset-0">
+                <div
+                    className="
+                        absolute
+                        left-[10%]
+                        top-[15%]
+                        h-[350px]
+                        w-[350px]
+                        rounded-full
+                        bg-[#c084fc]/10
+                        blur-[100px]
+                    "
+                />
 
-                {/* =====================================================
-                    HEADING
-                ===================================================== */}
+                <div
+                    className="
+                        absolute
+                        bottom-[5%]
+                        right-[5%]
+                        h-[400px]
+                        w-[400px]
+                        rounded-full
+                        bg-[#f472b6]/10
+                        blur-[120px]
+                    "
+                />
+            </div>
 
-                <div className="mb-8 text-center">
+            <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+
+                {/* =================================================
+                    HEADER
+                ================================================= */}
+
+                <div className="mx-auto mb-12 max-w-3xl text-center">
 
                     <div
                         className="
-                            mb-3
+                            mb-5
                             inline-flex
                             items-center
                             gap-2
                             rounded-full
-                            bg-white
+                            border
+                            border-[#e9ddff]
+                            bg-white/80
                             px-4
                             py-2
-                            text-xs
-                            font-bold
-                            tracking-wider
-                            text-[#704bbd]
-                            shadow-sm
+                            text-[10px]
+                            font-black
+                            tracking-[0.18em]
+                            text-[#7442c8]
+                            shadow-[0_8px_30px_rgba(100,50,180,0.08)]
+                            backdrop-blur-xl
                         "
                     >
-                        <Gift size={15} />
+                        <Gift size={14} />
                         SOLVESTIC FIRST DROP
                     </div>
 
                     <h2
                         className="
-                            text-3xl
+                            text-4xl
                             font-black
-                            leading-tight
+                            leading-[1.02]
+                            tracking-[-0.04em]
                             text-[#18151f]
-                            sm:text-4xl
+                            sm:text-5xl
+                            lg:text-6xl
                         "
                     >
-                        YOUR ORDER COULD COME
-
-                        <span className="block text-[#704bbd]">
-                            WITH AIRPODS.
+                        Your order could come
+                        <span className="block bg-gradient-to-r from-[#713fc4] to-[#e54891] bg-clip-text text-transparent">
+                            with AirPods.
                         </span>
                     </h2>
 
-                    <p
-                        className="
-                            mx-auto
-                            mt-3
-                            max-w-xl
-                            text-sm
-                            text-[#746b80]
-                            sm:text-base
-                        "
-                    >
+                    <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-[#756d80] sm:text-base">
                         Spend ₹1,999/- on the Solvestic First Drop
                         for a chance to win.
                     </p>
-
                 </div>
 
-
-                {/* =====================================================
+                {/* =================================================
                     MAIN CARD
-                ===================================================== */}
+                ================================================= */}
 
                 <div
                     className="
-                        grid
                         overflow-hidden
-                        rounded-[28px]
-                        bg-white
-                        shadow-[0_20px_60px_rgba(80,50,130,0.12)]
-                        lg:grid-cols-[0.9fr_1.1fr]
+                        rounded-[36px]
+                        border
+                        border-white
+                        bg-white/80
+                        shadow-[0_30px_100px_rgba(70,35,120,0.12)]
+                        backdrop-blur-xl
+                        lg:grid
+                        lg:grid-cols-[1.05fr_0.95fr]
                     "
                 >
 
                     {/* =================================================
-                        LEFT VISUAL
+                        VISUAL
                     ================================================= */}
 
                     <div
@@ -259,254 +417,142 @@ export default function AirPodsGiveaway() {
                         className="
                             relative
                             flex
-                            min-h-[340px]
+                            min-h-[520px]
                             items-center
                             justify-center
                             overflow-hidden
                             bg-gradient-to-br
-                            from-[#dfd2ff]
-                            via-[#eee4ff]
-                            to-[#fff0f7]
-                            sm:min-h-[400px]
+                            from-[#eee5ff]
+                            via-[#f7f1ff]
+                            to-[#fff1f7]
+                            sm:min-h-[620px]
                         "
                     >
 
-                        {/* Background glow */}
-
-                        <div
-                            className="
-                                absolute
-                                left-1/2
-                                top-[38%]
-                                h-[270px]
-                                w-[270px]
-                                -translate-x-1/2
-                                -translate-y-1/2
-                                rounded-full
-                                bg-[#a985ed]/20
-                                blur-3xl
-                            "
-                        />
-
-
-                        {/* =================================================
-                            INSIDE BOX
-                        ================================================= */}
-
-                        {/* <div
-                            ref={insideRef}
-                            className="
-                                absolute
-                                bottom-[112px]
-                                left-1/2
-                                z-[8]
-                                h-[80px]
-                                w-[185px]
-                                -translate-x-1/2
-                                rounded-[50%]
-                                bg-[#24113f]
-                                opacity-0
-                                shadow-[inset_0_8px_18px_rgba(0,0,0,0.65)]
-                            "
-                        /> */}
-
-
-                        {/* =================================================
-                            INNER GLOW
-                        ================================================= */}
-
+                        {/* Radial light */}
                         <div
                             ref={glowRef}
                             className="
+                                pointer-events-none
                                 absolute
-                                bottom-[100px]
                                 left-1/2
-                                z-[9]
-                                h-[150px]
-                                w-[180px]
+                                top-[48%]
+                                z-[2]
+                                h-[280px]
+                                w-[280px]
                                 -translate-x-1/2
+                                -translate-y-1/2
                                 rounded-full
-                                bg-white/80
-                                opacity-0
-                                blur-3xl
+                                bg-[radial-gradient(circle,rgba(255,255,255,0.95)_0%,rgba(202,163,255,0.35)_40%,transparent_72%)]
+                                blur-2xl
                             "
                         />
 
+                        {/* Floor shadow */}
+                        <div
+                            className="
+                                absolute
+                                bottom-[65px]
+                                left-1/2
+                                h-[35px]
+                                w-[300px]
+                                -translate-x-1/2
+                                rounded-[50%]
+                                bg-[#5c397d]/15
+                                blur-2xl
+                            "
+                        />
 
                         {/* =================================================
-                            SPARKLES
+                            PARTICLES
                         ================================================= */}
 
-                        <motion.span
-                            ref={(el) => {
-                                sparkleRefs.current[0] = el;
-                            }}
-                            className="
-                                absolute
-                                left-[15%]
-                                top-[28%]
-                                z-40
-                                text-3xl
-                                text-[#8054c8]
-                            "
-                            animate={{
-                                rotate: [0, 20, -10, 0],
-                                scale: [1, 1.15, 0.9, 1],
-                            }}
-                            transition={{
-                                duration: 2.5,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                        >
-                            ✦
-                        </motion.span>
-
-
-                        <motion.span
-                            ref={(el) => {
-                                sparkleRefs.current[1] = el;
-                            }}
-                            className="
-                                absolute
-                                right-[17%]
-                                top-[31%]
-                                z-40
-                                text-xl
-                                text-[#a06bd3]
-                            "
-                            animate={{
-                                rotate: [0, -25, 15, 0],
-                                scale: [0.8, 1.2, 0.9, 0.8],
-                            }}
-                            transition={{
-                                duration: 2.8,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: 0.4,
-                            }}
-                        >
-                            ✧
-                        </motion.span>
-
-
-                        <motion.span
-                            ref={(el) => {
-                                sparkleRefs.current[2] = el;
-                            }}
-                            className="
-                                absolute
-                                left-[25%]
-                                top-[47%]
-                                z-40
-                                text-lg
-                                text-[#8054c8]
-                            "
-                            animate={{
-                                rotate: [0, 30, 0],
-                                scale: [0.8, 1.2, 0.8],
-                            }}
-                            transition={{
-                                duration: 2.2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: 0.8,
-                            }}
-                        >
-                            ✦
-                        </motion.span>
-
-
-                        <motion.span
-                            ref={(el) => {
-                                sparkleRefs.current[3] = el;
-                            }}
-                            className="
-                                absolute
-                                right-[26%]
-                                top-[49%]
-                                z-40
-                                text-lg
-                                text-[#8054c8]
-                            "
-                            animate={{
-                                rotate: [0, -30, 0],
-                                scale: [0.8, 1.2, 0.8],
-                            }}
-                            transition={{
-                                duration: 2.4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: 1.1,
-                            }}
-                        >
-                            ✧
-                        </motion.span>
-
+                        {[
+                            "✦",
+                            "•",
+                            "✧",
+                            "◆",
+                            "✦",
+                            "•",
+                            "✧",
+                            "✦",
+                        ].map((symbol, index) => (
+                            <span
+                                key={index}
+                                ref={(el) => {
+                                    particleRefs.current[index] = el;
+                                }}
+                                className="
+                                    absolute
+                                    left-1/2
+                                    top-[55%]
+                                    z-[40]
+                                    text-xl
+                                    font-bold
+                                    text-[#884dcc]
+                                "
+                            >
+                                {symbol}
+                            </span>
+                        ))}
 
                         {/* =================================================
                             AIRPODS
-                            GSAP controls reveal.
-                            Framer controls floating AFTER reveal.
                         ================================================= */}
 
                         <div
                             ref={airpodsRef}
                             className="
                                 absolute
-                                top-[38px]
-                                z-[15]
-                                flex
-                                items-center
-                                justify-center
-                                opacity-0
+                                left-1/2
+                                top-[100px]
+                                z-[25]
+                                -translate-x-1/2
+                                will-change-transform
                             "
                         >
+                            <div
+                                ref={airpodsGlowRef}
+                                className="
+                                    absolute
+                                    left-1/2
+                                    top-1/2
+                                    h-[280px]
+                                    w-[280px]
+                                    -translate-x-1/2
+                                    -translate-y-1/2
+                                    rounded-full
+                                    bg-white/80
+                                    blur-[55px]
+                                "
+                            />
 
                             <motion.div
                                 animate={{
-                                    y: [0, -7, 0],
+                                    y: [0, -8, 0],
+                                    rotate: [0, 0.5, 0],
                                 }}
                                 transition={{
-                                    duration: 3.5,
+                                    duration: 4,
                                     repeat: Infinity,
                                     ease: "easeInOut",
                                 }}
                             >
-
-                                {/* AirPods glow */}
-
-                                <div
-                                    className="
-                                        absolute
-                                        left-1/2
-                                        top-1/2
-                                        h-[190px]
-                                        w-[190px]
-                                        -translate-x-1/2
-                                        -translate-y-1/2
-                                        rounded-full
-                                        bg-white/70
-                                        blur-3xl
-                                    "
-                                />
-
                                 <img
-                                    src="/317571_0_86sq77g0G.webp"
-                                    alt="AirPods 5"
+                                    src="/ChatGPT Image Sep 17, 2026, 04_30_32 PM.png"
+                                    alt="Solvestic AirPods"
                                     className="
                                         relative
                                         z-10
-                                        w-[300px]
+                                        w-[280px]
                                         object-contain
-                                        drop-shadow-[0_28px_30px_rgba(75,45,120,0.30)]
+                                        drop-shadow-[0_35px_45px_rgba(58,35,90,0.28)]
+                                        sm:w-[350px]
+                                        lg:w-[390px]
                                     "
                                 />
-
                             </motion.div>
-
                         </div>
-
 
                         {/* =================================================
                             GIFT BOX
@@ -514,278 +560,413 @@ export default function AirPodsGiveaway() {
 
                         <div
                             ref={boxRef}
-                            className="absolute bottom-[22px] sm:flex hidden z-20 flex items-end justify-center"
+                            className="
+                                absolute
+                                bottom-[65px]
+                                left-1/2
+                                z-[30]
+                                w-[270px]
+                                -translate-x-1/2
+                                sm:w-[320px]
+                            "
+                            style={{
+                                perspective: "1000px",
+                            }}
                         >
-                            <img
-                                src="https://cdn3d.iconscout.com/3d/premium/thumb/opened-pink-gift-box-3d-icon-png-download-10090199.png?f=webp"
-                                alt="Solvestic gift box"
-                                className="w-[240px] object-contain drop-shadow-[0_25px_25px_rgba(75,45,120,0.25)] sm:w-[300px]"
+
+                            {/* ==============================
+                                OPENING / INNER
+                            ============================== */}
+
+                            <div
+                                ref={insideRef}
+                                className="
+                                    absolute
+                                    left-1/2
+                                    top-[-8px]
+                                    z-[1]
+                                    h-[100px]
+                                    w-[235px]
+                                    -translate-x-1/2
+                                    rounded-[50%]
+                                    bg-[#241335]
+                                    shadow-[inset_0_12px_30px_rgba(0,0,0,0.6)]
+                                "
+                            >
+                                <div
+                                    className="
+                                        absolute
+                                        inset-[10px]
+                                        rounded-[50%]
+                                        bg-gradient-to-br
+                                        from-[#5e2a8e]
+                                        via-[#27143b]
+                                        to-[#120b1b]
+                                    "
+                                />
+                            </div>
+
+                            {/* ==============================
+                                LID
+                            ============================== */}
+
+                            <div
+                                ref={lidRef}
+                                className="
+                                    absolute
+                                    left-1/2
+                                    top-0
+                                    z-[50]
+                                    h-[76px]
+                                    w-[286px]
+                                    -translate-x-1/2
+                                    rounded-[18px]
+                                    border
+                                    border-white/20
+                                    bg-gradient-to-br
+                                    from-[#2e2140]
+                                    via-[#21162f]
+                                    to-[#140d1e]
+                                    shadow-[0_18px_35px_rgba(30,15,45,0.3)]
+                                    will-change-transform
+                                "
+                            >
+                                {/* Lid highlight */}
+                                <div
+                                    className="
+                                        absolute
+                                        inset-[1px]
+                                        rounded-[17px]
+                                        border
+                                        border-white/10
+                                        bg-gradient-to-br
+                                        from-white/10
+                                        to-transparent
+                                    "
+                                />
+
+                                {/* Ribbon */}
+                                <div
+                                    ref={ribbonVerticalRef}
+                                    className="
+                                        absolute
+                                        left-1/2
+                                        top-0
+                                        h-full
+                                        w-[42px]
+                                        -translate-x-1/2
+                                        bg-gradient-to-r
+                                        from-[#d946ef]
+                                        via-[#f472b6]
+                                        to-[#d946ef]
+                                    "
+                                />
+
+                                <div
+                                    ref={ribbonHorizontalRef}
+                                    className="
+                                        absolute
+                                        left-0
+                                        top-1/2
+                                        h-[18px]
+                                        w-full
+                                        -translate-y-1/2
+                                        bg-gradient-to-r
+                                        from-[#d946ef]
+                                        via-[#f472b6]
+                                        to-[#d946ef]
+                                    "
+                                />
+                            </div>
+
+                            {/* ==============================
+                                BOX BODY
+                            ============================== */}
+
+                            <div
+                                ref={boxBodyRef}
+                                className="
+                                    relative
+                                    z-[20]
+                                    mt-[38px]
+                                    h-[170px]
+                                    w-full
+                                    rounded-[22px]
+                                    border
+                                    border-white/10
+                                    bg-gradient-to-br
+                                    from-[#31213f]
+                                    via-[#21152e]
+                                    to-[#130b1d]
+                                    shadow-[0_30px_45px_rgba(40,20,60,0.35)]
+                                    will-change-transform
+                                "
+                            >
+                                {/* Front shine */}
+                                <div
+                                    className="
+                                        absolute
+                                        inset-x-0
+                                        bottom-0
+                                        h-[70%]
+                                        rounded-b-[22px]
+                                        bg-gradient-to-t
+                                        from-black/20
+                                        to-transparent
+                                    "
+                                />
+
+                                {/* Center ribbon */}
+                                <div
+                                    className="
+                                        absolute
+                                        left-1/2
+                                        top-0
+                                        h-full
+                                        w-[42px]
+                                        -translate-x-1/2
+                                        bg-gradient-to-r
+                                        from-[#d946ef]
+                                        via-[#f472b6]
+                                        to-[#d946ef]
+                                    "
+                                />
+
+                                {/* Logo */}
+                                <div
+                                    className="
+                                        absolute
+                                        left-1/2
+                                        top-1/2
+                                        z-10
+                                        -translate-x-1/2
+                                        -translate-y-1/2
+                                        whitespace-nowrap
+                                        text-[19px]
+                                        font-black
+                                        tracking-[-0.04em]
+                                        text-white
+                                    "
+                                >
+                                    solvestic<span className="text-[#f472b6]">.</span>
+                                </div>
+                            </div>
+
+                            {/* ==============================
+                                BOTTOM SHADOW
+                            ============================== */}
+
+                            <div
+                                className="
+                                    absolute
+                                    bottom-[-12px]
+                                    left-1/2
+                                    h-[20px]
+                                    w-[90%]
+                                    -translate-x-1/2
+                                    rounded-full
+                                    bg-black/20
+                                    blur-xl
+                                "
                             />
                         </div>
 
-
                         {/* =================================================
-                            BADGE
+                            SCROLL LABEL
                         ================================================= */}
 
                         <div
                             className="
                                 absolute
-                                bottom-4
-                                left-4
+                                bottom-5
+                                right-5
                                 z-[60]
-                                flex
+                                hidden
                                 items-center
-                                gap-1.5
+                                gap-2
                                 rounded-full
                                 border
-                                border-white
-                                bg-white/90
+                                border-white/70
+                                bg-white/70
                                 px-3
-                                py-1.5
-                                text-[10px]
-                                font-bold
-                                text-[#6846b5]
+                                py-2
+                                text-[9px]
+                                font-black
+                                uppercase
+                                tracking-widest
+                                text-[#6d4a91]
                                 shadow-lg
-                                backdrop-blur
+                                backdrop-blur-xl
+                                sm:flex
                             "
                         >
-                            <span>🎁</span>
-                            1 WINNER EVERY 100 ORDERS
+                            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#d946ef]" />
+                            Scroll to reveal
                         </div>
 
                     </div>
 
+                    {/* =================================================
+                        RIGHT CONTENT
+                    ================================================= */}
 
-                    {/* =====================================================
-                        RIGHT INFORMATION
-                    ===================================================== */}
-
-                    <div className="p-6 sm:p-8 lg:p-10">
+                    <div className="p-7 sm:p-10 lg:p-12">
 
                         {/* Prize */}
 
-                        <div className="mb-5 flex items-center gap-3">
+                        <div className="mb-7 flex items-center gap-4">
 
                             <div
                                 className="
                                     flex
-                                    h-10
-                                    w-10
+                                    h-12
+                                    w-12
+                                    shrink-0
                                     items-center
                                     justify-center
-                                    rounded-xl
-                                    bg-[#eee7ff]
-                                    text-[#704bbd]
+                                    rounded-2xl
+                                    bg-gradient-to-br
+                                    from-[#eee3ff]
+                                    to-[#fce5f2]
+                                    text-[#7442c8]
                                 "
                             >
-                                <Trophy size={19} />
+                                <Trophy size={21} />
                             </div>
 
                             <div>
-
-                                <p
-                                    className="
-                                        text-[10px]
-                                        font-bold
-                                        uppercase
-                                        tracking-wider
-                                        text-[#91869e]
-                                    "
-                                >
+                                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-[#9a90a5]">
                                     The Prize
                                 </p>
 
-                                <h3
-                                    className="
-                                        text-lg
-                                        font-black
-                                        text-[#211c29]
-                                    "
-                                >
-                                    AirPods 5
+                                <h3 className="text-xl font-black text-[#211c29]">
+                                    AirPods
                                 </h3>
-
                             </div>
 
                             <div className="ml-auto text-right">
-
-                                <p
-                                    className="
-                                        text-xl
-                                        font-black
-                                        text-[#704bbd]
-                                    "
-                                >
+                                <p className="text-xl font-black text-[#7442c8]">
                                     ₹14,900
                                 </p>
-
-                                <p className="text-[10px] text-[#91869e]">
+                                <p className="text-[10px] text-[#9a90a5]">
                                     Prize value
                                 </p>
-
                             </div>
 
                         </div>
-
 
                         {/* Apple Music */}
 
                         <div
                             className="
-                                mb-5
+                                mb-7
                                 flex
                                 items-center
-                                gap-3
-                                rounded-xl
-                                bg-[#faf7ff]
-                                p-3
+                                gap-4
+                                rounded-2xl
+                                border
+                                border-[#f0e7f8]
+                                bg-[#fcf9ff]
+                                p-4
                             "
                         >
-
-                            <Music2
-                                size={20}
-                                className="text-[#e65489]"
-                            />
+                            <Music2 size={21} className="text-[#e54891]" />
 
                             <div>
-
-                                <p
-                                    className="
-                                        text-sm
-                                        font-bold
-                                        text-[#25202e]
-                                    "
-                                >
+                                <p className="text-sm font-bold text-[#25202e]">
                                     3 Months Apple Music Free
                                 </p>
 
-                                <p className="text-xs text-[#8a7e94]">
+                                <p className="mt-1 text-xs text-[#8a7e94]">
                                     Included with the giveaway prize
                                 </p>
-
                             </div>
-
                         </div>
-
 
                         {/* Eligibility */}
 
                         <div
                             className="
-                                mb-5
-                                rounded-2xl
-                                bg-[#1b1722]
-                                p-5
+                                mb-7
+                                overflow-hidden
+                                rounded-[24px]
+                                bg-[#1d1627]
+                                p-6
                                 text-white
+                                shadow-[0_20px_40px_rgba(25,15,35,0.12)]
                             "
                         >
+                            <div className="flex items-end justify-between">
 
-                            <p className="text-xs text-white/60">
-                                SPEND
+                                <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/50">
+                                        Spend
+                                    </p>
+
+                                    <p className="mt-1 text-3xl font-black">
+                                        ₹1,999/-
+                                    </p>
+                                </div>
+
+                                <Sparkles
+                                    size={22}
+                                    className="mb-1 text-[#f472b6]"
+                                />
+
+                            </div>
+
+                            <p className="mt-3 max-w-sm text-xs leading-5 text-white/55">
+                                on the Solvestic First Drop to become eligible
+                                for the giveaway.
                             </p>
-
-                            <p className="mt-1 text-3xl font-black">
-                                ₹1,999/-
-                            </p>
-
-                            <p
-                                className="
-                                    mt-1
-                                    text-xs
-                                    leading-5
-                                    text-white/60
-                                "
-                            >
-                                on the Solvestic First Drop to become
-                                eligible.
-                            </p>
-
                         </div>
-
 
                         {/* Progress */}
 
-                        <div className="mb-5">
+                        <div className="mb-7">
 
-                            <div
-                                className="
-                                    mb-2
-                                    flex
-                                    items-center
-                                    justify-between
-                                "
-                            >
+                            <div className="mb-3 flex items-center justify-between">
 
                                 <div>
-
-                                    <p
-                                        className="
-                                            text-sm
-                                            font-bold
-                                            text-[#28222f]
-                                        "
-                                    >
+                                    <p className="text-sm font-black text-[#28222f]">
                                         Current Batch
                                     </p>
 
-                                    <p
-                                        className="
-                                            text-[11px]
-                                            text-[#8b8094]
-                                        "
-                                    >
-                                        1 winner selected for every
-                                        100 eligible orders
+                                    <p className="mt-1 text-[11px] text-[#8b8094]">
+                                        1 winner selected for every 100 eligible orders
                                     </p>
-
                                 </div>
 
                                 <div
                                     className="
                                         flex
                                         items-center
-                                        gap-1.5
+                                        gap-2
                                         rounded-full
                                         bg-red-50
-                                        px-2.5
-                                        py-1
+                                        px-3
+                                        py-1.5
                                         text-[10px]
-                                        font-bold
+                                        font-black
                                         text-red-500
                                     "
                                 >
-                                    <span
-                                        className="
-                                            h-1.5
-                                            w-1.5
-                                            animate-pulse
-                                            rounded-full
-                                            bg-red-500
-                                        "
-                                    />
+                                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
                                     LIVE
                                 </div>
 
                             </div>
 
-
-                            <div
-                                className="
-                                    h-2
-                                    overflow-hidden
-                                    rounded-full
-                                    bg-[#e9e2f3]
-                                "
-                            >
+                            <div className="h-2.5 overflow-hidden rounded-full bg-[#eee8f4]">
 
                                 <div
                                     className="
                                         h-full
                                         rounded-full
                                         bg-gradient-to-r
-                                        from-[#704bbd]
-                                        to-[#e75a91]
+                                        from-[#7442c8]
+                                        via-[#b04bd4]
+                                        to-[#ef5793]
                                     "
                                     style={{
                                         width: `${progress}%`,
@@ -794,127 +975,56 @@ export default function AirPodsGiveaway() {
 
                             </div>
 
-
-                            <div
-                                className="
-                                    mt-1
-                                    flex
-                                    justify-between
-                                    text-[10px]
-                                    font-semibold
-                                    text-[#8a7e94]
-                                "
-                            >
-
-                                <span>
-                                    {orders} eligible orders
-                                </span>
-
+                            <div className="mt-2 flex justify-between text-[10px] font-semibold text-[#8a7e94]">
+                                <span>{orders} eligible orders</span>
                                 <span>100</span>
-
                             </div>
 
                         </div>
-
 
                         {/* Steps */}
 
-                        <div className="mb-5 grid grid-cols-3 gap-2">
+                        <div className="mb-7 grid grid-cols-3 gap-2">
 
-                            <div className="rounded-xl bg-[#f8f5fc] p-3">
-
-                                <p
+                            {[
+                                ["01", "Place eligible order"],
+                                ["02", "Complete 100 orders"],
+                                ["03", "Live winner selection"],
+                            ].map(([number, text]) => (
+                                <div
+                                    key={number}
                                     className="
-                                        mb-1
-                                        text-[10px]
-                                        font-black
-                                        text-[#704bbd]
+                                        rounded-2xl
+                                        border
+                                        border-[#eee8f5]
+                                        bg-[#fbf9fd]
+                                        p-3.5
                                     "
                                 >
-                                    01
-                                </p>
+                                    <p className="mb-1 text-[10px] font-black text-[#7442c8]">
+                                        {number}
+                                    </p>
 
-                                <p
-                                    className="
-                                        text-[11px]
-                                        font-semibold
-                                        leading-4
-                                        text-[#41394b]
-                                    "
-                                >
-                                    Place eligible order
-                                </p>
-
-                            </div>
-
-
-                            <div className="rounded-xl bg-[#f8f5fc] p-3">
-
-                                <p
-                                    className="
-                                        mb-1
-                                        text-[10px]
-                                        font-black
-                                        text-[#704bbd]
-                                    "
-                                >
-                                    02
-                                </p>
-
-                                <p
-                                    className="
-                                        text-[11px]
-                                        font-semibold
-                                        leading-4
-                                        text-[#41394b]
-                                    "
-                                >
-                                    Complete 100 orders
-                                </p>
-
-                            </div>
-
-
-                            <div className="rounded-xl bg-[#f8f5fc] p-3">
-
-                                <p
-                                    className="
-                                        mb-1
-                                        text-[10px]
-                                        font-black
-                                        text-[#704bbd]
-                                    "
-                                >
-                                    03
-                                </p>
-
-                                <p
-                                    className="
-                                        text-[11px]
-                                        font-semibold
-                                        leading-4
-                                        text-[#41394b]
-                                    "
-                                >
-                                    Live winner selection
-                                </p>
-
-                            </div>
+                                    <p className="text-[11px] font-semibold leading-4 text-[#41394b]">
+                                        {text}
+                                    </p>
+                                </div>
+                            ))}
 
                         </div>
 
-
-                        {/* Live selection */}
+                        {/* Live Selection */}
 
                         <div
                             className="
                                 flex
                                 items-center
                                 gap-3
-                                rounded-xl
+                                rounded-2xl
                                 border
-                                border-[#e6ddf3]
-                                p-3
+                                border-[#e8dff1]
+                                bg-white
+                                p-4
                             "
                         >
 
@@ -922,24 +1032,23 @@ export default function AirPodsGiveaway() {
                                 className="
                                     relative
                                     flex
-                                    h-9
-                                    w-9
+                                    h-10
+                                    w-10
                                     shrink-0
                                     items-center
                                     justify-center
-                                    rounded-lg
-                                    bg-[#f0eaff]
-                                    text-[#704bbd]
+                                    rounded-xl
+                                    bg-[#f1eaff]
+                                    text-[#7442c8]
                                 "
                             >
-
-                                <Radio size={17} />
+                                <Radio size={18} />
 
                                 <span
                                     className="
                                         absolute
-                                        right-0.5
-                                        top-0.5
+                                        right-1
+                                        top-1
                                         h-2
                                         w-2
                                         animate-pulse
@@ -947,62 +1056,32 @@ export default function AirPodsGiveaway() {
                                         bg-red-500
                                     "
                                 />
-
                             </div>
 
                             <div>
-
-                                <p
-                                    className="
-                                        text-xs
-                                        font-black
-                                        text-[#27212e]
-                                    "
-                                >
+                                <p className="text-xs font-black text-[#27212e]">
                                     Automated Live Winner Selection
                                 </p>
 
-                                <p
-                                    className="
-                                        mt-0.5
-                                        text-[10px]
-                                        text-[#8b8094]
-                                    "
-                                >
+                                <p className="mt-1 text-[10px] text-[#8b8094]">
                                     Transparent selection process
                                 </p>
-
                             </div>
 
                             <ShieldCheck
-                                size={17}
-                                className="ml-auto text-[#704bbd]"
+                                size={18}
+                                className="ml-auto text-[#7442c8]"
                             />
 
                         </div>
 
-
-                        {/* Footer */}
-
-                        <p
-                            className="
-                                mt-4
-                                text-center
-                                text-[10px]
-                                text-[#988da2]
-                            "
-                        >
-                            Your order could be the one.
-                            &nbsp;
-                            Terms & Conditions apply.
+                        <p className="mt-5 text-center text-[10px] text-[#988da2]">
+                            Your order could be the one. &nbsp; Terms & Conditions apply.
                         </p>
 
                     </div>
-
                 </div>
-
             </div>
-
         </section>
     );
 }

@@ -8,7 +8,12 @@ import gsap from "gsap";
 /* =========================================================
    COUNTDOWN DATE
 ========================================================= */
+import { Fredoka } from "next/font/google";
 
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
 const TARGET_DATE = new Date("2026-10-20T07:42:36");
 
 /* =========================================================
@@ -197,240 +202,167 @@ export default function Hero3() {
   return (
     <section
       ref={heroRef}
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#A980D7]
-      "
+      className="relative w-full overflow-hidden bg-[#fff]"
     >
       {/* =====================================================
-          BANNER
-          REDUCED HEIGHT
-      ====================================================== */}
-
+        BANNER
+    ====================================================== */}
       <div
         className="
-          relative
-          h-[520px]
-          w-full
-          sm:h-[560px]
-          md:h-[590px]
-          lg:h-[620px]
-          xl:h-[650px]
-        "
+        relative
+        h-[520px]
+        w-full
+        sm:h-[560px]
+        md:h-[620px]
+        lg:h-[680px]
+        xl:h-[600px]
+      "
       >
-        {/* ===================================================
-            YOUR COMPLETE BACKGROUND IMAGE
-        ==================================================== */}
-
+        {/* BACKGROUND IMAGE */}
         <Image
-          src="/WhatsApp Image 2026-09-16 at 3.41.14 PM.jpeg"
+          src="/banner white.png"
           alt="Solvestic skincare"
           fill
           priority
           sizes="100vw"
-          className="
-            object-cover
-            object-center
-          "
+          className="object-cover sm:object-center object-left"
         />
 
-        {/* ===================================================
-            LEFT SIDE LIGHT GRADIENT
-
-            Keeps text readable without covering
-            the product on the right.
-        ==================================================== */}
-
+        {/* =====================================================
+          RIGHT SIDE SOFT OVERLAY
+      ====================================================== */}
         <div
           className="
-            pointer-events-none
-            absolute
-            inset-0
-            bg-gradient-to-r
-            from-white/35
-            via-white/5
-            to-transparent
-          "
+          pointer-events-none
+          absolute
+          inset-0
+        "
         />
 
-        {/* ===================================================
-            SOFT PURPLE GLOW
-        ==================================================== */}
-
+        {/* =====================================================
+          SUBTLE GLOW
+      ====================================================== */}
         <div
           ref={glowRef}
           className="
-            pointer-events-none
-            absolute
-            left-[5%]
-            top-[18%]
-            h-[260px]
-            w-[260px]
-            rounded-full
-            bg-[#DDBBFF]/25
-            blur-[80px]
-            sm:h-[330px]
-            sm:w-[330px]
-          "
+          pointer-events-none
+          absolute
+          right-[15%]
+          top-[20%]
+          h-[280px]
+          w-[280px]
+          rounded-full
+          blur-[90px]
+          sm:h-[350px]
+          sm:w-[350px]
+        "
         />
 
-        {/* ===================================================
-            LEFT CONTENT
-        ==================================================== */}
-
+        {/* =====================================================
+          RIGHT CONTENT
+      ====================================================== */}
         <div
           ref={contentRef}
           className="
-            relative
-            z-20
-            mx-auto
-            flex
-            h-full
-            w-full
-            max-w-[1600px]
-            items-center
-            px-6
-            sm:px-10
-            lg:px-16
-            xl:px-20
-          "
+          relative
+          z-20
+          mx-auto
+          flex
+          h-full
+          w-full
+          max-w-[1600px]
+          items-center
+          justify-end
+          px-4
+          sm:px-10
+          md:px-14
+          lg:px-20
+          xl:px-0 sm:ml-4
+        "
         >
           <div
             className="
-              w-full
-              max-w-[700px]
-              pt-2
-              lg:w-[55%]
-            "
+            flex
+            w-full
+            max-w-[570px]
+            flex-col
+            items-cente
+            text-center
+            lg:mr-[2%]
+            xl:mr-[2%]
+          "
           >
             {/* =================================================
-                LOGO
-            ================================================== */}
-
-            {/* <motion.div
-              initial={{
-                opacity: 0,
-                y: -20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="
-                mb-5
-                sm:mb-7
-              "
-            >
-              <Image
-                src="/newlogo1.png"
-                alt="Solvestic"
-                width={330}
-                height={90}
-                priority
-                className="
-                  h-auto
-                  w-[150px]
-                  sm:w-[180px]
-                  md:w-[210px]
-                "
-              />
-            </motion.div> */}
-
-            {/* =================================================
-                EXACT TEXT
-            ================================================== */}
-
-            <motion.p
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              TAGLINE
+          ================================================== */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
                 delay: 0.15,
-                duration: 0.7,
-              }}
-              className="
-                mb-3
-                text-[11px]
-                font-medium
-                uppercase
-                tracking-[0.25em]
-                text-[#301653]
-                sm:text-sm
-                md:text-base
-              "
-            >
-              A NEW SKIN STORY BEGINS
-            </motion.p>
-
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 25,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 0.25,
                 duration: 0.9,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="
-                text-[clamp(2.7rem,5.8vw,6rem)]
-                font-semibold
-                uppercase
-                leading-[0.88]
-                tracking-[-0.06em]
-                text-[#ad51c1]
-              "
+              className="relative mb-8"
             >
-              SOLVESTIC
-              <span className="text-[#ff8ba9]">
-                .
-              </span>
-            </motion.h1>
+              {/* Small label */}
+              {/* <div className="mb-4 flex items-center justify-center gap-3">
+                <span className="h-px w-8 bg-[#ad51c1]/50 sm:w-12" />
 
-            <motion.p
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 0.4,
-                duration: 0.8,
-              }}
-              className="
-                mt-3
-                text-[clamp(1.2rem,2.4vw,2.4rem)]
-                font-medium
-                uppercase
-                tracking-[0.12em]
-                text-[#54218C]
-              "
-            >
-              IS ON THE WAY
-            </motion.p>
+                <span
+                  className="
+        text-[9px]
+        font-semibold
+        uppercase
+        tracking-[0.35em]
+        text-[#7650A0]
+        sm:text-[10px]
+        md:text-xs
+      "
+                >
+                  COMING SOON
+                </span>
+
+                <span className="h-px w-8 bg-[#ad51c1]/50 sm:w-12" />
+              </div> */}
+
+              {/* Main tagline */}
+              <motion.h1
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: 0.2,
+                  duration: 0.8,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  w-full
+                  max-w-[520px]
+                  text-left
+                  text-[clamp(3rem,5vw,5.2rem)]
+                  font-semibold
+                  leading-[0.88]
+                  tracking-[-0.030em]
+                  text-black
+                "
+              >
+                For the
+                <br />
+                skin-smart
+                <br />
+                generation
+              </motion.h1>
+            </motion.div>
 
             {/* =================================================
-                COUNTDOWN
-            ================================================== */}
-
+              COUNTDOWN
+          ================================================== */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -448,32 +380,31 @@ export default function Hero3() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="
-                mt-7
-                w-full
-                max-w-[650px]
-                rounded-[20px]
-                border
-                border-white/70
-                bg-white/45
-                px-4
-                py-5
-                shadow-[0_15px_45px_rgba(60,20,100,0.12)]
-                backdrop-blur-xl
-                sm:mt-8
-                sm:px-6
-                sm:py-6
-                md:px-8
-                md:py-7
-              "
+              mt-2
+              w-full
+              max-w-[520px]
+              rounded-[24px]
+              border
+              border-white/80
+              bg-white/40
+              px-5
+              py-5
+              shadow-[0_20px_60px_rgba(60,20,100,0.12)]
+              backdrop-blur-xl
+              sm:px-7
+              sm:py-6
+              md:px-8
+              md:py-7
+            "
             >
               <div
                 className="
-                  flex
-                  items-center
-                  justify-between
-                  gap-1
-                  sm:gap-3
-                "
+                flex
+                items-center
+                justify-between
+                gap-2
+                sm:gap-4
+              "
               >
                 <TimerItem
                   value={pad(days)}
@@ -482,12 +413,11 @@ export default function Hero3() {
 
                 <div
                   className="
-                    h-10
-                    w-px
-                    bg-[#7650A0]/30
-                    sm:h-14
-                    md:h-16
-                  "
+                  h-10
+                  w-px
+                  bg-[#7650A0]/25
+                  sm:h-14
+                "
                 />
 
                 <TimerItem
@@ -497,12 +427,11 @@ export default function Hero3() {
 
                 <div
                   className="
-                    h-10
-                    w-px
-                    bg-[#7650A0]/30
-                    sm:h-14
-                    md:h-16
-                  "
+                  h-10
+                  w-px
+                  bg-[#7650A0]/25
+                  sm:h-14
+                "
                 />
 
                 <TimerItem
@@ -512,12 +441,11 @@ export default function Hero3() {
 
                 <div
                   className="
-                    h-10
-                    w-px
-                    bg-[#7650A0]/30
-                    sm:h-14
-                    md:h-16
-                  "
+                  h-10
+                  w-px
+                  bg-[#7650A0]/25
+                  sm:h-14
+                "
                 />
 
                 <TimerItem
@@ -528,10 +456,10 @@ export default function Hero3() {
             </motion.div>
 
             {/* =================================================
-                JOIN WAITLIST
-            ================================================== */}
-
-            <motion.button
+              JOIN WAITLIST BUTTON
+          ================================================== */}
+            <motion.a
+              href="#form"
               initial={{
                 opacity: 0,
                 y: 20,
@@ -541,9 +469,9 @@ export default function Hero3() {
                 y: 0,
               }}
               whileHover={{
-                scale: 1.04,
+                scale: 1.05,
                 boxShadow:
-                  "0 18px 40px rgba(84,33,140,0.35)",
+                  "0 18px 45px rgba(84,33,140,0.30)",
               }}
               whileTap={{
                 scale: 0.97,
@@ -553,43 +481,46 @@ export default function Hero3() {
                 duration: 0.7,
               }}
               className="
-                group
-                mt-5
-                flex
-                items-center
-                justify-center
-                gap-5
-                rounded-full
-                bg-[#7D45C2]
-                px-8
-                py-3.5
-                text-sm
-                font-semibold
-                uppercase
-                tracking-[0.08em]
-                text-white
-                shadow-[0_12px_30px_rgba(90,35,150,0.25)]
-                sm:px-10
-                sm:py-4
-                sm:text-base
-              "
+              group
+              w-fit
+              mt-7
+              flex
+              items-center
+              justify-center
+              gap-5
+              rounded-full
+              bg-[#7D45C2]
+              px-8
+              py-4
+              text-sm
+              font-semibold
+              uppercase
+              tracking-[0.1em]
+              text-white
+              shadow-[0_12px_30px_rgba(90,35,150,0.25)]
+              transition-all
+              duration-300
+              sm:px-10
+              sm:py-4
+              sm:text-base
+            "
             >
               JOIN WAITLIST
 
               <span
                 className="
-                  text-xl
-                  transition-transform
-                  duration-300
-                  group-hover:translate-x-2
-                "
+                text-xl
+                transition-transform
+                duration-300
+                group-hover:translate-x-2
+              "
               >
                 →
               </span>
-            </motion.button>
+            </motion.a>
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }

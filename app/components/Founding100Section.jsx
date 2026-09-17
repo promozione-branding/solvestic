@@ -138,8 +138,7 @@ export default function Founding100Section() {
                                 </span>{" "}
                                 — the first 100 people to join the Solvestic
                                 journey. Get recognised on our website, get
-                                early access to what’s coming next, and help
-                                shape Solvestic from the start.
+                                early access to what’s coming next, and be part of the community shaping Solvestic from the start.
                             </p>
 
                         </div>
@@ -148,7 +147,7 @@ export default function Founding100Section() {
                         {/* CTA */}
                         <div className="relative shrink-0 lg:pr-2">
 
-                            <button
+                            <a href="#form"
                                 type="button"
                                 className="
                                     group
@@ -189,7 +188,7 @@ export default function Founding100Section() {
                                 >
                                     <ArrowUpRight size={12} />
                                 </span>
-                            </button>
+                            </a>
 
                         </div>
 

@@ -22,6 +22,7 @@ import Problems from "./components/Problems";
 import AirPodsGiveaway from "./components/AirPodsGiveaway";
 import Founding100Section from "./components/Founding100Section";
 import FounderDiarySection from "./components/FounderDiarySection";
+import CTASection from "./components/CTASection";
 
 export default function Page() {
   return (
@@ -36,9 +37,9 @@ export default function Page() {
 
       {/* <Hero2 /> */}
       <FormSection />
-      <Founding100Section />
       <LogoMarquee />
       <SkinConcerns />
+      <Founding100Section />
       <FounderDiarySection />
       <AirPodsGiveaway />
       <Certifications />
@@ -46,6 +47,7 @@ export default function Page() {
       {/* <WhyJoins/> */}
       {/* <Countdown/> */}
       {/* <Understand/> */}
+      <CTASection />
       <Features />
       <InstagramPosts />
       {/* <StayConnected /> */}
