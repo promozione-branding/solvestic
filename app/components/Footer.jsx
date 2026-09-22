@@ -85,7 +85,7 @@ export default function Footer() {
                   <span className="text-xs text-white">LinkedinIn</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
-                  <a href="https://www.youtube.com/@solvesticcare">
+                  <a href="https://www.snapchat.com/@solvestic?invite_id=wPyqYtMJ&locale=en_IN&share_id=vhFXjlEnSjiS9F3SA50_8A&sid=93c33448c3a448c48b7c407e576d86ad">
                     <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
                       <FaSnapchatGhost className="text-white" size={16} />
                     </div>

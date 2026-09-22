@@ -48,7 +48,7 @@ export default function Page() {
       {/* <Countdown/> */}
       {/* <Understand/> */}
       <CTASection />
-      <Features />
+      {/* <Features /> */}
       <InstagramPosts />
       {/* <StayConnected /> */}
       <Footer />

@@ -7,16 +7,16 @@ import {
     FaFacebookF,
     FaLinkedinIn,
     FaSnapchatGhost,
-    FaTwitter,
+    FaYoutube,
 } from "react-icons/fa";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 
 const socials = [
     { name: "Instagram", icon: FaInstagram, href: "https://www.instagram.com/solvesticcare" },
     { name: "Facebook", icon: FaFacebookF, href: "https://www.facebook.com/profile.php?id=61592286175717" },
-    { name: "Twitter", icon: FaTwitter, href: "#" },
-    { name: "LinkedIn", icon: FaLinkedinIn, href: "#" },
-    { name: "Snapchat", icon: FaSnapchatGhost, href: "#" },
+    { name: "Youtube", icon: FaYoutube, href: "https://www.snapchat.com/@solvestic?invite_id=wPyqYtMJ&locale=en_IN&share_id=vhFXjlEnSjiS9F3SA50_8A&sid=93c33448c3a448c48b7c407e576d86ad" },
+    { name: "LinkedIn", icon: FaLinkedinIn, href: "https://www.linkedin.com/in/solvesticwellness" },
+    { name: "Snapchat", icon: FaSnapchatGhost,  href:"https://www.youtube.com/@solvesticcare"},
 ];
 
 export default function CTASection() {
