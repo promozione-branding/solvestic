@@ -91,7 +91,7 @@ function TimerItem({ value, label }) {
         }}
         className="
           tabular-nums
-          text-[clamp(2rem,4vw,4.2rem)]
+          text-[clamp(2rem,4vw,3.2rem)]
           font-semibold
           leading-none
           tracking-[-0.05em]
@@ -221,7 +221,7 @@ export default function Hero3() {
       >
         {/* BACKGROUND IMAGE */}
         <Image
-          src="/banner white.png"
+          src="/WEB BANNER SOLVESTIC .png"
           alt="Solvestic skincare"
           fill
           priority
@@ -306,28 +306,7 @@ export default function Hero3() {
               }}
               className="relative mb-8"
             >
-              {/* Small label */}
-              {/* <div className="mb-4 flex items-center justify-center gap-3">
-                <span className="h-px w-8 bg-[#ad51c1]/50 sm:w-12" />
 
-                <span
-                  className="
-        text-[9px]
-        font-semibold
-        uppercase
-        tracking-[0.35em]
-        text-[#7650A0]
-        sm:text-[10px]
-        md:text-xs
-      "
-                >
-                  COMING SOON
-                </span>
-
-                <span className="h-px w-8 bg-[#ad51c1]/50 sm:w-12" />
-              </div> */}
-
-              {/* Main tagline */}
               <motion.h1
                 initial={{
                   opacity: 0,
@@ -345,8 +324,8 @@ export default function Hero3() {
                 className="
                   w-full
                   max-w-[520px]
-                  text-left
-                  text-[clamp(3rem,5vw,5.2rem)]
+                  text-left px-10
+                  text-[clamp(3rem,5vw,3.2rem)]
                   font-semibold
                   leading-[0.88]
                   tracking-[-0.030em]
@@ -388,7 +367,7 @@ export default function Hero3() {
               border
               border-white/80
               bg-white/40
-              px-5
+              ml-10
               py-5
               shadow-[0_20px_60px_rgba(60,20,100,0.12)]
               backdrop-blur-xl
@@ -485,12 +464,14 @@ export default function Hero3() {
               group
               w-fit
               mt-7
+              ml-10
               flex
               items-center
               justify-center
               gap-5
               rounded-full
               bg-[#7D45C2]
+              hover:bg-[#FD83FF]
               px-8
               py-4
               text-sm

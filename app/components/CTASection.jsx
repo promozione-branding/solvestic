@@ -134,9 +134,7 @@ export default function CTASection() {
                             Let’s make something
                             <span className="
                                 ml-1.5
-                                bg-gradient-to-r
-                                from-[#7442c8]
-                                to-[#e54891]
+                               bg-[#7D45C2]
                                 bg-clip-text
                                 text-transparent
                             ">

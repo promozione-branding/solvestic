@@ -22,7 +22,7 @@ const InputField = ({
 }) => (
   <div className="group flex items-center gap-3 bg-white border border-purple-100 rounded-xl px-4 py-3.5 w-full transition-all duration-200 hover:border-purple-200 focus-within:border-purple-400 focus-within:ring-4 focus-within:ring-purple-100">
     <Icon
-      className="text-purple-800/70 shrink-0 group-focus-within:text-purple-600 transition-colors"
+      className="text-[#7D45C2] shrink-0 group-focus-within:text-purple-600 transition-colors"
       size={16}
     />
 
@@ -212,10 +212,10 @@ export default function FormSection() {
         {/* Launch Offer - 70% */}
         <div className="relative inline-flex w-full flex-1 sm:flex-[7]">
           {/* Animated border */}
-          <span className="pointer-events-none absolute inset-0 rounded-full border border-pink-500 animate-[borderPing_1.8s_ease-out_infinite]" />
+          <span className="pointer-events-none absolute inset-0 rounded-full border border-purple-500 animate-[borderPing_1.8s_ease-out_infinite]" />
 
           {/* Content */}
-          <div className="relative z-10 inline-flex w-full justify-center items-center gap-2 rounded-full border border-pink-200/70 bg-gradient-to-r from-pink-400 to-purple-600 px-4 py-2 shadow-sm">
+          <div className="relative z-10 inline-flex w-full justify-center items-center gap-2 rounded-full border border-purple-200/70 bg-[#7D45C2] px-4 py-2 shadow-sm">
             <span className="ml-3 text-center text-sm font-semibold tracking-tight text-white">
               A chance to be featured on Solvestic’s website.
             </span>
@@ -226,7 +226,7 @@ export default function FormSection() {
         <button
           type="submit"
           disabled={loading}
-          className="group flex w-full flex-1 items-center justify-center gap-2 rounded-xl bg-[#a980d7] px-5 py-2 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-purple-900 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:flex-[3]"
+          className="group flex w-full flex-1 items-center justify-center gap-2 rounded-xl bg-[#7D45C2] px-5 py-2 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-purple-800 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:flex-[3]"
         >
           <span>
             {loading

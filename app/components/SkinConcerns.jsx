@@ -48,7 +48,7 @@ const SkinConcerns = () => {
 
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
             What does your{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r text-[#7D45C2] bg-clip-text">
               skin
             </span>{" "}
             need?
@@ -227,7 +227,7 @@ const SkinConcerns = () => {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <a href="#form"  className="rounded-full bg-gray-900 px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-purple-600">
+          <a href="#form" className="rounded-full bg-[#7D45C2] px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-[#FD83FF]">
             Find the right care with us
           </a>
         </div>
