@@ -77,7 +77,7 @@ export default function Footer() {
                   <span className="text-xs text-white">YouTube</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
-                  <a href="https://www.youtube.com/@solvesticcare">
+                  <a href="https://www.linkedin.com/in/solvesticwellness">
                     <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-purple-900 transition">
                       <FaLinkedinIn className="text-white" size={16} />
                     </div>

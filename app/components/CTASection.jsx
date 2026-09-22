@@ -14,9 +14,9 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 const socials = [
     { name: "Instagram", icon: FaInstagram, href: "https://www.instagram.com/solvesticcare" },
     { name: "Facebook", icon: FaFacebookF, href: "https://www.facebook.com/profile.php?id=61592286175717" },
-    { name: "Youtube", icon: FaYoutube, href: "https://www.snapchat.com/@solvestic?invite_id=wPyqYtMJ&locale=en_IN&share_id=vhFXjlEnSjiS9F3SA50_8A&sid=93c33448c3a448c48b7c407e576d86ad" },
+    { name: "Youtube", icon: FaYoutube, href: "https://www.youtube.com/@solvesticcare" },
     { name: "LinkedIn", icon: FaLinkedinIn, href: "https://www.linkedin.com/in/solvesticwellness" },
-    { name: "Snapchat", icon: FaSnapchatGhost,  href:"https://www.youtube.com/@solvesticcare"},
+    { name: "Snapchat", icon: FaSnapchatGhost,  href:"https://www.snapchat.com/@solvestic?invite_id=wPyqYtMJ&locale=en_IN&share_id=vhFXjlEnSjiS9F3SA50_8A&sid=93c33448c3a448c48b7c407e576d86ad"},
 ];
 
 export default function CTASection() {
@@ -175,6 +175,9 @@ export default function CTASection() {
                                 gap-2
                                 rounded-full
                                 bg-[#1d1627]
+                                transition-all
+              duration-300  bg-[#7D45C2]
+              hover:bg-[#FD83FF]
                                 px-4
                                 py-2.5
                                 text-xs
