@@ -37,7 +37,7 @@ export default function Page() {
 
       {/* <Hero2 /> */}
       <FormSection />
-      <LogoMarquee />
+      {/* <LogoMarquee /> */}
       <SkinConcerns />
       <Founding100Section />
       <FounderDiarySection />

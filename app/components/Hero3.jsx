@@ -4,10 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-
-/* =========================================================
-   COUNTDOWN DATE
-========================================================= */
 import { Fredoka } from "next/font/google";
 import MobileStickyFooter from "./MobileStickyFooter";
 
@@ -15,6 +11,7 @@ const fredoka = Fredoka({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
+
 const TARGET_DATE = new Date("2026-10-20T07:42:36");
 
 /* =========================================================
@@ -127,6 +124,51 @@ export default function Hero3() {
   const contentRef = useRef(null);
   const glowRef = useRef(null);
 
+  /* =======================================================
+     WAITLIST TABLET STATE
+  ======================================================= */
+
+  const [waitlistClicked, setWaitlistClicked] =
+    useState(false);
+
+  const [isTablet, setIsTablet] =
+    useState(false);
+
+  /* =======================================================
+     DETECT TABLET ONLY
+     
+     Tablet:
+     768px - 1023px
+  ======================================================= */
+
+  useEffect(() => {
+    const checkTablet = () => {
+      const width = window.innerWidth;
+
+      setIsTablet(
+        width >= 768 && width < 1024
+      );
+    };
+
+    checkTablet();
+
+    window.addEventListener(
+      "resize",
+      checkTablet
+    );
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        checkTablet
+      );
+    };
+  }, []);
+
+  /* =======================================================
+     COUNTDOWN
+  ======================================================= */
+
   const {
     days,
     hours,
@@ -143,6 +185,7 @@ export default function Hero3() {
 
     const ctx = gsap.context(() => {
       /* Soft animated glow */
+
       gsap.to(glowRef.current, {
         scale: 1.08,
         opacity: 0.65,
@@ -153,18 +196,19 @@ export default function Hero3() {
       });
 
       /* Subtle mouse movement */
+
       const handleMouseMove = (event) => {
         const rect =
           heroRef.current.getBoundingClientRect();
 
         const x =
           (event.clientX - rect.left) /
-          rect.width -
+            rect.width -
           0.5;
 
         const y =
           (event.clientY - rect.top) /
-          rect.height -
+            rect.height -
           0.5;
 
         gsap.to(contentRef.current, {
@@ -206,99 +250,116 @@ export default function Hero3() {
       className="relative w-full overflow-hidden bg-[#fff]"
     >
       {/* =====================================================
-        BANNER
-    ====================================================== */}
+          DESKTOP / TABLET BANNER
+      ====================================================== */}
+
       <div
-        className="sm:block hidden
-        relative
-        h-[520px]
-        w-full
-        sm:h-[560px]
-        md:h-[620px]
-        lg:h-[680px]
-        xl:h-[600px]
-      "
+        className="
+          hidden
+          relative
+          h-[520px]
+          w-full
+          sm:block
+          sm:h-[560px]
+          md:h-[620px]
+          lg:h-[680px]
+          xl:h-[600px]
+        "
       >
-        {/* BACKGROUND IMAGE */}
+        {/* =================================================
+            BACKGROUND IMAGE
+        ================================================== */}
+
         <Image
           src="/WEB BANNER SOLVESTIC .png"
           alt="Solvestic skincare"
           fill
           priority
           sizes="100vw"
-          className="object-cover sm:object-center object-left"
+          className="object-cover object-left sm:object-center"
         />
 
-        {/* =====================================================
-          RIGHT SIDE SOFT OVERLAY
-      ====================================================== */}
+        {/* =================================================
+            RIGHT SIDE SOFT OVERLAY
+        ================================================== */}
+
         <div
           className="
-          pointer-events-none
-          absolute
-          inset-0
-        "
+            pointer-events-none
+            absolute
+            inset-0
+          "
         />
 
-        {/* =====================================================
-          SUBTLE GLOW
-      ====================================================== */}
+        {/* =================================================
+            SUBTLE GLOW
+        ================================================== */}
+
         <div
           ref={glowRef}
           className="
-          pointer-events-none
-          absolute
-          right-[15%]
-          top-[20%]
-          h-[280px]
-          w-[280px]
-          rounded-full
-          blur-[90px]
-          sm:h-[350px]
-          sm:w-[350px]
-        "
+            pointer-events-none
+            absolute
+            right-[15%]
+            top-[20%]
+            h-[280px]
+            w-[280px]
+            rounded-full
+            blur-[90px]
+            sm:h-[350px]
+            sm:w-[350px]
+          "
         />
 
-        {/* =====================================================
-          RIGHT CONTENT
-      ====================================================== */}
+        {/* =================================================
+            RIGHT CONTENT
+        ================================================== */}
+
         <div
           ref={contentRef}
           className="
-          relative
-          z-20
-          mx-auto
-          flex
-          h-full
-          w-full
-          max-w-[1600px]
-          items-center
-          justify-end
-          px-4
-          sm:px-10
-          md:px-14
-          lg:px-20
-          xl:px-0 sm:ml-4
-        "
+            relative
+            z-20
+            mx-auto
+            flex
+            h-full
+            w-full
+            max-w-[1600px]
+            items-center
+            justify-end
+            px-4
+            sm:px-10
+            md:px-14
+            lg:px-20
+            xl:px-0
+            sm:ml-4
+          "
         >
           <div
             className="
-            flex
-            w-full
-            max-w-[570px]
-            flex-col
-            items-cente
-            text-center
-            lg:mr-[2%]
-            xl:mr-[2%]
-          "
+              flex
+              w-full
+              max-w-[570px]
+              flex-col
+              items-center
+              text-center
+              lg:mr-[2%]
+              xl:mr-[2%]
+            "
           >
             {/* =================================================
-              TAGLINE
-          ================================================== */}
+                TAGLINE
+            ================================================== */}
+
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
               transition={{
                 delay: 0.15,
                 duration: 0.9,
@@ -306,7 +367,6 @@ export default function Hero3() {
               }}
               className="relative mb-8"
             >
-
               <motion.h1
                 initial={{
                   opacity: 0,
@@ -324,7 +384,8 @@ export default function Hero3() {
                 className="
                   w-full
                   max-w-[520px]
-                  text-left px-10
+                  px-10
+                  text-left
                   text-[clamp(3rem,5vw,3.2rem)]
                   font-semibold
                   leading-[0.88]
@@ -341,8 +402,9 @@ export default function Hero3() {
             </motion.div>
 
             {/* =================================================
-              COUNTDOWN
-          ================================================== */}
+                COUNTDOWN
+            ================================================== */}
+
             <motion.div
               initial={{
                 opacity: 0,
@@ -360,31 +422,31 @@ export default function Hero3() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="
-              mt-2
-              w-full
-              max-w-[520px]
-              rounded-[24px]
-              border
-              border-white/80
-              bg-white/40
-              ml-10
-              py-5
-              shadow-[0_20px_60px_rgba(60,20,100,0.12)]
-              backdrop-blur-xl
-              sm:px-7
-              sm:py-6
-              md:px-8
-              md:py-7
-            "
+                mt-2
+                ml-10
+                w-full
+                max-w-[520px]
+                rounded-[24px]
+                border
+                border-white/80
+                bg-white/40
+                py-5
+                shadow-[0_20px_60px_rgba(60,20,100,0.12)]
+                backdrop-blur-xl
+                sm:px-7
+                sm:py-6
+                md:px-8
+                md:py-7
+              "
             >
               <div
                 className="
-                flex
-                items-center
-                justify-between
-                gap-2
-                sm:gap-4
-              "
+                  flex
+                  items-center
+                  justify-between
+                  gap-2
+                  sm:gap-4
+                "
               >
                 <TimerItem
                   value={pad(days)}
@@ -393,11 +455,11 @@ export default function Hero3() {
 
                 <div
                   className="
-                  h-10
-                  w-px
-                  bg-[#7650A0]/25
-                  sm:h-14
-                "
+                    h-10
+                    w-px
+                    bg-[#7650A0]/25
+                    sm:h-14
+                  "
                 />
 
                 <TimerItem
@@ -407,11 +469,11 @@ export default function Hero3() {
 
                 <div
                   className="
-                  h-10
-                  w-px
-                  bg-[#7650A0]/25
-                  sm:h-14
-                "
+                    h-10
+                    w-px
+                    bg-[#7650A0]/25
+                    sm:h-14
+                  "
                 />
 
                 <TimerItem
@@ -421,11 +483,11 @@ export default function Hero3() {
 
                 <div
                   className="
-                  h-10
-                  w-px
-                  bg-[#7650A0]/25
-                  sm:h-14
-                "
+                    h-10
+                    w-px
+                    bg-[#7650A0]/25
+                    sm:h-14
+                  "
                 />
 
                 <TimerItem
@@ -436,8 +498,9 @@ export default function Hero3() {
             </motion.div>
 
             {/* =================================================
-              JOIN WAITLIST BUTTON
-          ================================================== */}
+                JOIN WAITLIST BUTTON
+            ================================================== */}
+
             <motion.a
               href="#form"
               initial={{
@@ -456,46 +519,59 @@ export default function Hero3() {
               whileTap={{
                 scale: 0.97,
               }}
+              onClick={() => {
+                /*
+                 * ONLY tablet gets the
+                 * clicked pink state.
+                 */
+                if (isTablet) {
+                  setWaitlistClicked(true);
+                }
+              }}
               transition={{
                 delay: 0.7,
                 duration: 0.7,
               }}
-              className="
-              group
-              w-fit
-              mt-7
-              ml-10
-              flex
-              items-center
-              justify-center
-              gap-5
-              rounded-full
-              bg-[#7D45C2]
-              hover:bg-[#FD83FF]
-              px-8
-              py-4
-              text-sm
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-white
-              shadow-[0_12px_30px_rgba(90,35,150,0.25)]
-              transition-all
-              duration-300
-              sm:px-10
-              sm:py-4
-              sm:text-base
-            "
+              className={`
+                group
+                mt-7
+                ml-10
+                flex
+                w-fit
+                items-center
+                justify-center
+                gap-5
+                rounded-full
+                px-8
+                py-4
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-white
+                shadow-[0_12px_30px_rgba(90,35,150,0.25)]
+                transition-all
+                duration-300
+                sm:px-10
+                sm:py-4
+                sm:text-base
+
+                ${
+                  isTablet && waitlistClicked
+                    ? "bg-[#FD83FF]"
+                    : "bg-[#7D45C2] hover:bg-[#FD83FF]"
+                }
+              `}
             >
               JOIN WAITLIST
 
               <span
                 className="
-                text-xl
-                transition-transform
-                duration-300
-                group-hover:translate-x-2
-              "
+                  text-xl
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-2
+                "
               >
                 →
               </span>
@@ -504,8 +580,20 @@ export default function Hero3() {
         </div>
       </div>
 
-      <div className="relative block h-[400px] w-full overflow-hidden sm:hidden">
-        {/* MOBILE BANNER IMAGE */}
+      {/* =====================================================
+          MOBILE BANNER
+      ====================================================== */}
+
+      <div
+        className="
+          relative
+          block
+          h-[400px]
+          w-full
+          overflow-hidden
+          sm:hidden
+        "
+      >
         <Image
           src="/mobileBanner.png"
           alt="For the skin-smart generation"
@@ -514,34 +602,11 @@ export default function Hero3() {
           sizes="100vw"
           className="object-cover object-center"
         />
-
-        {/* CONTENT OVER IMAGE */}
-        {/* <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-10 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.2,
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-        max-w-[330px]
-        text-[3.2rem]
-        font-semibold
-        leading-[0.88]
-        tracking-[-0.04em]
-        text-black
-      "
-          >
-            For the
-            <br />
-            skin-smart
-            <br />
-            generation
-          </motion.h1>
-        </div> */}
       </div>
+
+      {/* =====================================================
+          MOBILE STICKY FOOTER
+      ====================================================== */}
 
       <MobileStickyFooter
         days={days}
@@ -549,6 +614,6 @@ export default function Hero3() {
         minutes={minutes}
         seconds={seconds}
       />
-    </section >
+    </section>
   );
 }
