@@ -27,19 +27,19 @@ const certifications = [
     image: "/icons/10.png",
   },
   {
-    title: "SULPHATE & PARABEN FREE ",
+    title: "CURELITY FREE",
     subtitle: "FREE",
     description: "Clean Formulation",
     image: "/icons/11.png",
   },
   {
-    title: "DERMATOLOGICALLY TESTED",
+    title: "SULPHATE & PARABEN FREE",
     subtitle: "FREE",
     description: "Clean Formulation",
     image: "/icons/12.png",
   },
   {
-    title: "CURELITY FREE",
+    title: "DERMATOLOGICALLY TESTED",
     subtitle: "FREE",
     description: "Clean Formulation",
     image: "/icons/13.png",
