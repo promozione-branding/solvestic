@@ -12,37 +12,37 @@ const certifications = [
     title: "ISO",
     subtitle: "CERTIFIED",
     description: "Quality Management",
-    image: "/icons/1.webp",
+    image: "/icons/8.png",
   },
   {
     title: "GMP",
     subtitle: "CERTIFIED",
     description: "Good Manufacturing",
-    image: "/icons/2.webp",
+    image: "/icons/9.png",
   },
   {
     title: "FDA",
     subtitle: "APPROVED",
     description: "Safety Standards",
-    image: "/icons/3.webp",
+    image: "/icons/10.png",
   },
   {
     title: "SULPHATE & PARABEN FREE ",
     subtitle: "FREE",
     description: "Clean Formulation",
-    image: "/icons/5.webp",
+    image: "/icons/11.png",
   },
   {
     title: "DERMATOLOGICALLY TESTED",
     subtitle: "FREE",
     description: "Clean Formulation",
-    image: "/icons/6.webp",
+    image: "/icons/12.png",
   },
   {
     title: "CURELITY FREE",
     subtitle: "FREE",
     description: "Clean Formulation",
-    image: "/icons/4.webp",
+    image: "/icons/13.png",
   },
 ];
 
