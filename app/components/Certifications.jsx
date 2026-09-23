@@ -2,31 +2,47 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+
+import "swiper/css";
 
 const certifications = [
   {
     title: "ISO",
     subtitle: "CERTIFIED",
     description: "Quality Management",
-    image: "/1.webp",
+    image: "/icons/1.webp",
   },
   {
     title: "GMP",
     subtitle: "CERTIFIED",
     description: "Good Manufacturing",
-    image: "/22.webp",
+    image: "/icons/2.webp",
   },
   {
     title: "FDA",
     subtitle: "APPROVED",
     description: "Safety Standards",
-    image: "/3.webp",
+    image: "/icons/3.webp",
   },
   {
-    title: "SULPHATE,Paraben & CRUELTY",
+    title: "SULPHATE & PARABEN FREE ",
     subtitle: "FREE",
     description: "Clean Formulation",
-    image: "/4.webp",
+    image: "/icons/5.webp",
+  },
+  {
+    title: "DERMATOLOGICALLY TESTED",
+    subtitle: "FREE",
+    description: "Clean Formulation",
+    image: "/icons/6.webp",
+  },
+  {
+    title: "CURELITY FREE",
+    subtitle: "FREE",
+    description: "Clean Formulation",
+    image: "/icons/4.webp",
   },
 ];
 
@@ -74,7 +90,6 @@ export default function Certifications() {
           }}
           className="mx-auto mb-10 max-w-2xl text-center sm:mb-7"
         >
-          {/* Small eyebrow */}
           <div className="mb-3 flex items-center justify-center gap-3">
             <span className="h-px w-7 bg-gray-300 sm:w-10" />
 
@@ -90,95 +105,101 @@ export default function Certifications() {
           </h2>
         </motion.div>
 
-        {/* ================= CERTIFICATION GRID ================= */}
+        {/* ================= CERTIFICATION SLIDER ================= */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-2 overflow-hidden rounded-2xl border border-[#e5e1dc] bg-white sm:grid-cols-4"
         >
-          {certifications.map((item, index) => (
-            <motion.div
-              key={item.title}
-              variants={cardVariants}
-              className={`
-                group relative flex min-h-[215px]
-                flex-col items-center justify-center
-                overflow-hidden px-4 py-8 text-center
-                transition-all duration-500
-                hover:bg-[#fcfbf9]
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={2}
+            spaceBetween={0}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            speed={700}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+            }}
+            className="overflow-hidden rounded-2xl border border-[#e5e1dc] bg-white"
+          >
+            {certifications.map((item, index) => (
+              <SwiperSlide key={item.title}>
+                <motion.div
+                  variants={cardVariants}
+                  className="group relative flex min-h-[215px] flex-col items-center justify-center overflow-hidden border-r border-[#e8e4df]  text-center transition-all duration-500 hover:bg-[#fcfbf9] sm:min-h-[250px] sm:px-0"
+                >
+                  {/* Hover background glow */}
+                  <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f1eee9] opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
 
-                ${index % 2 === 0 ? "border-r border-[#e8e4df]" : ""}
-                ${index < 2 ? "border-b border-[#e8e4df]" : ""}
+                  {/* Certification Logo */}
+                  <motion.div
+                    className="relative z-10 mb-5 flex h-20 w-20 items-center justify-center sm:mb-6 sm:h-28 sm:w-28"
+                    whileHover={{
+                      y: -5,
+                      scale: 1.05,
+                    }}
+                    transition={{
+                      duration: 0.4,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    {/* Outer ring */}
+                    <div className="absolute inset-0 rounded-full border border-dashed border-[#d8d3cc] transition-all duration-700 group-hover:rotate-180 group-hover:border-[#aaa39a]" />
 
-                sm:min-h-[270px]
-                sm:border-b-0
-                sm:px-6
-                ${index < 3 ? "sm:border-r sm:border-[#e8e4df]" : ""}
-              `}
-            >
-              {/* Hover background glow */}
-              <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f1eee9] opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+                    {/* Inner ring */}
+                    <div className="absolute inset-2 rounded-full border border-[#eeeae5]" />
 
-              {/* Certification Logo */}
-              <motion.div
-                className="relative z-10 mb-5 flex h-20 w-20 items-center justify-center sm:mb-6 sm:h-28 sm:w-28"
-                whileHover={{
-                  y: -5,
-                  scale: 1.05,
-                }}
-                transition={{
-                  duration: 0.4,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border border-dashed border-[#d8d3cc] transition-all duration-700 group-hover:rotate-180 group-hover:border-[#aaa39a]" />
+                    {/* Logo */}
+                    <div className="relative flex h-14 w-14 items-center justify-center sm:h-20 sm:w-20">
+                      <img
+                        src={item.image}
+                        alt={`${item.title} ${item.subtitle}`}
+                        className="max-h-full max-w-full object-contain transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+                      />
+                    </div>
+                  </motion.div>
 
-                {/* Inner ring */}
-                <div className="absolute inset-2 rounded-full border border-[#eeeae5]" />
+                  {/* Certification title */}
+                  <h3 className="relative z-10 max-w-[150px] text-xs font-semibold uppercase tracking-[0.18em] text-gray-900 sm:text-sm">
+                    {item.title}
+                  </h3>
 
-                {/* Logo */}
-                <div className="relative flex h-14 w-14 items-center justify-center sm:h-20 sm:w-20">
-                  <img
-                    src={item.image}
-                    alt={`${item.title} ${item.subtitle}`}
-                    className="max-h-full max-w-full object-contain   transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+                  {/* Subtitle */}
+                  {/* <span className="relative z-10 mt-1 text-[9px] font-medium uppercase tracking-[0.25em] text-gray-500 sm:text-[10px]">
+                    {item.subtitle}
+                  </span> */}
+
+                  {/* Description */}
+                  {/* <p className="relative z-10 mt-2 text-[10px] text-gray-800 sm:text-xs">
+                    {item.description}
+                  </p> */}
+
+                  {/* Bottom animated line */}
+                  <motion.span
+                    className="absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 bg-gray-900"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: 45 }}
+                    transition={{ duration: 0.4 }}
                   />
-                </div>
-              </motion.div>
 
-              {/* Certification title */}
-              <h3 className="relative z-10 text-xs font-semibold uppercase tracking-[0.18em] text-gray-900 sm:text-sm">
-                {item.title}
-              </h3>
-
-              {/* Subtitle */}
-              <span className="relative z-10 mt-1 text-[9px] font-medium uppercase tracking-[0.25em] text-gray-500 sm:text-[10px]">
-                {item.subtitle}
-              </span>
-
-              {/* Description */}
-              <p className="relative z-10 mt-2 text-[10px] text-gray-800 sm:text-xs">
-                {item.description}
-              </p>
-
-              {/* Bottom animated line */}
-              <motion.span
-                className="absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 bg-gray-900"
-                initial={{ width: 0 }}
-                whileHover={{ width: 45 }}
-                transition={{ duration: 0.4 }}
-              />
-
-              {/* Corner accent */}
-              <span className="absolute right-0 top-0 h-0 w-0 border-l-[20px] border-t-[20px] border-l-transparent border-t-[#f3f0ec] opacity-0 transition-all duration-500 group-hover:opacity-100" />
-            </motion.div>
-          ))}
+                  {/* Corner accent */}
+                  <span className="absolute right-0 top-0 h-0 w-0 border-l-[20px] border-t-[20px] border-l-transparent border-t-[#f3f0ec] opacity-0 transition-all duration-500 group-hover:opacity-100" />
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </motion.div>
-
-        {/* ================= BOTTOM TRUST LINE ================= */}
       </div>
     </section>
   );
