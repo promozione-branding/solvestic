@@ -27,7 +27,7 @@ const certifications = [
     image: "/icons/10.png",
   },
   {
-    title: "CURELITY FREE",
+    title: "CRUELTY FREE",
     subtitle: "FREE",
     description: "Clean Formulation",
     image: "/icons/11.png",
