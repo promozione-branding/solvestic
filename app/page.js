@@ -23,6 +23,7 @@ import AirPodsGiveaway from "./components/AirPodsGiveaway";
 import Founding100Section from "./components/Founding100Section";
 import FounderDiarySection from "./components/FounderDiarySection";
 import CTASection from "./components/CTASection";
+import Hero4 from "./components/Hero4";
 
 export default function Page() {
   return (
@@ -31,7 +32,8 @@ export default function Page() {
       {/* <Marquee /> */}
       <Header />
 
-      <Hero3 />
+      {/* <Hero3 /> */}
+      <Hero4 />
       {/* <Marquee2 /> */}
       <Problems />
 
